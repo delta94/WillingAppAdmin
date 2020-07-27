@@ -1,12 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
+import data from "./Data.json";
 import Users from "../users.json";
-import Navbar from "./Navbar.js";
+
 
 export default class Accounts extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+      
         <div className="container">
           <table class="table table-striped">
             <thead>
