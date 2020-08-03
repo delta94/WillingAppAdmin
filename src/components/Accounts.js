@@ -5,7 +5,6 @@ import Users from "../users.json";
 import Navbar from "./Navbar.js";
 import Modal from "react-bootstrap/Modal";
 import "../Navbar.css";
-=======
 
 export default class Accounts extends Component {
   constructor(props) {

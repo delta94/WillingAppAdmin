@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 
 export default class Navbar extends Component {
   render() {
@@ -6,7 +8,8 @@ export default class Navbar extends Component {
       <div>
         <nav className="navbarStyle">
           <div style={{ marginRight: 0 }} className="row">
-            <div className="col-9"></div>
+            <div className="col-1"><img className="logo" src="./logo_willingsvg_white.svg"/></div>
+            <div className="col-8"></div>
             <div className="col-sm">
               <img
                 className="userImg"
@@ -18,13 +21,13 @@ export default class Navbar extends Component {
           <div style={{ marginRight: 0 }} id="buttons" className="row">
             <div className="col-1"></div>
             <div className="col-sm">
-              <button className="buttonStyle">Dashboard</button>
+              <button className="buttonStyle"><Link className="linkstyle"  path to ="/">Dashboard</Link></button>
             </div>
             <div className="col-sm">
-              <button className="buttonStyle">Accounts</button>
+              <button className="buttonStyle"><Link className="linkstyle" path to = "/accounts/">Accounts</Link></button>
             </div>
             <div className="col-sm">
-              <button className="buttonStyle">Requests</button>
+              <button className="buttonStyle"><Link className="linkstyle" path to ="">Requests</Link></button>
             </div>
             <div className="col-8"></div>
           </div>
