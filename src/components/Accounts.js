@@ -1,8 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
+import data from "./Data.json";
 import Users from "../users.json";
 import Navbar from "./Navbar.js";
 import Modal from "react-bootstrap/Modal";
 import "../Navbar.css";
+=======
 
 export default class Accounts extends Component {
   constructor(props) {
@@ -70,6 +73,7 @@ export default class Accounts extends Component {
 
         <div style={{ marginTop: 30 }} className="container">
           <table className="table table-striped">
+      
             <thead>
               <tr>
                 <th scope="col">
