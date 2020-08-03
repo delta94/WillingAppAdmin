@@ -1,0 +1,107 @@
+.navbarStyle {
+  background-color: #4d34c1;
+  height: 112px;
+  width: 100%;
+}
+
+svg {
+  margin-top: 5px;
+}
+
+.userImg {
+  width: 2em;
+  height: 2em;
+  border-radius: 30px;
+  border: rgb(65, 61, 61) 1px solid;
+  margin-top: 5px;
+}
+
+#buttons {
+  margin-top: 28px;
+}
+
+button.buttonStyle {
+  color: white;
+  background: transparent;
+  border: none;
+  /* margin: 30px auto 0; */
+  display: block;
+  font-size: large;
+  font-family: monospace;
+  outline: none;
+  position: relative;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  padding: 10px;
+}
+
+button.buttonStyle:before {
+  content: "";
+  border-bottom: 1px solid white;
+  padding: 0 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+button.buttonStyle:hover:before {
+  width: 100%;
+  padding: 0;
+}
+
+button.buttonStyle:active {
+  background: #000;
+  color: #fff;
+  -webkit-transition: none;
+  transition: none;
+}
+
+#searchbar {
+  filter: brightness(80%);
+}
+
+::placeholder {
+  color: white;
+}
+
+.table {
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
+}
+
+.inTableButton {
+  background-color: #4d34c1;
+  border-radius: 5px;
+  border-color: transparent;
+  color: white;
+  width: 100%;
+}
+
+.TableHeadStyle {
+  cursor: pointer;
+  color: #333333;
+  opacity: 0.6;
+}
+
+.sendBurronStyle {
+  color: #333333;
+  opacity: 0.6;
+}
+
+.textareaStyle {
+  width: 100%;
+  height: 80px;
+}
+
+.modalBTN {
+  background-color: #4d34c1;
+  border-color: transparent;
+  height: 38px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+}
