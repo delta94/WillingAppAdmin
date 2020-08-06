@@ -25,11 +25,37 @@ export default class Dashboard extends React.Component {
     console.log(a);
     this.setState({ topUsers: a });
   }
-
-  saveDatesinfo= () => {
-   
+  saveDatesInformation= async()=>{
+    try{
+      // send request to get the token from the server with phone number
+      let res = await axios(
+      {
+          url:"https://cors-anywhere.herokuapp.com/ec2-52-91-26-189.compute-1.amazonaws.com:8080/X98ActivitieS/_summary",
+          // adress to cors https://cors-anywhere.herokuapp.com/
+          method:"get",
+          headers: {
+            'content-type':'application/json',
+            'X-Requested-With':'XMLhttpRequest'
+          },
+      })
+    
+      let data = res.data;
+      console.log(data)
+  }catch (e){
+      console.log(`😱 Axios getInformation failed: ${e}`);
+  }
   }
 
+
+  saveDatesinfo= () => {
+        // axios.get(`https://jsonplaceholder.typicode.com/users`)
+        axios.get(`https://cors-anywhere.herokuapp.com/ec2-52-91-26-189.compute-1.amazonaws.com:8080/X98ActivitieS/_summary`)
+        .then(res => {
+          const information = res.data;
+          console.log(5);
+          // console.log(information);
+          })
+        }
   render() {
     console.log(this.state.topUsers);
     // let TopFiveUsers = this.state.Users.slice(0, 5);
@@ -38,7 +64,7 @@ export default class Dashboard extends React.Component {
         <Navbar />
 
         <DateRangePicker
-          onApply={() => this.saveDatesinfo()}
+          onApply={() => this.saveDatesInformation()}
           initialSettings={{
             showDropdowns: true,
           }}

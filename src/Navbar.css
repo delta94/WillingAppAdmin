@@ -21,9 +21,15 @@ svg {
   margin-top: 5px;
 }
 
-.linkstyle{
+.linkstyle:hover{
 color: white;
+text-underline-position: none;
+
 }
+.linkstyle{
+  color: white;
+  
+  }
 
 #buttons {
   margin-top: -5px;
@@ -62,6 +68,8 @@ button.buttonStyle:before {
 button.buttonStyle:hover:before {
   width: 100%;
   padding: 0;
+  color: white;
+
 }
 
 
