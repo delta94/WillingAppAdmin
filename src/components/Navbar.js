@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-
 export default class Navbar extends Component {
   render() {
     return (
       <div>
         <nav className="navbarStyle">
           <div style={{ marginRight: 0 }} className="row">
-            <div className="col-1"><img className="logo" src="./logo_willingsvg_white.svg"/></div>
+            <div className="col-1">
+              <img className="logo" src="./logo_willingsvg_white.svg" />
+            </div>
             <div className="col-8"></div>
             <div className="col-sm">
               <img
@@ -21,13 +22,19 @@ export default class Navbar extends Component {
           <div style={{ marginRight: 0 }} id="buttons" className="row">
             <div className="col-1"></div>
             <div className="col-sm">
-              <button className="buttonStyle"><Link className="linkstyle"  path to ="/">Dashboard</Link></button>
+              <Link className="linkstyle" path to="/">
+                <button className="buttonStyle">Dashboard</button>
+              </Link>
             </div>
             <div className="col-sm">
-              <button className="buttonStyle"><Link className="linkstyle" path to = "/accounts/">Accounts</Link></button>
+              <Link className="linkstyle" path to="/accounts/">
+                <button className="buttonStyle">Accounts</button>
+              </Link>
             </div>
             <div className="col-sm">
-              <button className="buttonStyle"><Link className="linkstyle" path to ="">Requests</Link></button>
+              <Link className="linkstyle" path to="">
+                <button className="buttonStyle">Requests</button>
+              </Link>
             </div>
             <div className="col-8"></div>
           </div>

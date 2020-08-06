@@ -1,4 +1,3 @@
-
 import React from "react";
 import Navbar from "./Navbar.js";
 import DateRangePicker from "react-bootstrap-daterangepicker";
@@ -6,13 +5,41 @@ import "../Dashboard.css";
 import { Link } from "react-router-dom";
 import data from "../Data.json";
 import Users from "../users.json";
+import { AgChartsReact } from "ag-charts-react";
 import axios from "axios";
 
 export default class Dashboard extends React.Component {
+  data = [
+    {
+      quarter: "Q1",
+      spending: 450,
+    },
+    {
+      quarter: "Q2",
+      spending: 560,
+    },
+    {
+      quarter: "Q3",
+      spending: 600,
+    },
+    {
+      quarter: "Q4",
+      spending: 700,
+    },
+  ];
   constructor(props) {
     super(props);
   }
   state = {
+    options: {
+      data: this.data,
+      series: [
+        {
+          xKey: "quarter",
+          yKey: "spending",
+        },
+      ],
+    },
     Users: Users,
     topUsers: [],
   };
@@ -24,11 +51,9 @@ export default class Dashboard extends React.Component {
     let a = x.filter((element, index) => index < 5);
     console.log(a);
     this.setState({ topUsers: a });
-  }
+  };
 
-  saveDatesinfo= () => {
-   
-  }
+  saveDatesinfo = () => {};
 
   render() {
     console.log(this.state.topUsers);
@@ -36,7 +61,6 @@ export default class Dashboard extends React.Component {
     return (
       <div id="dates" style={{ textAlign: "right" }}>
         <Navbar />
-
         <DateRangePicker
           onApply={() => this.saveDatesinfo()}
           initialSettings={{
@@ -47,14 +71,11 @@ export default class Dashboard extends React.Component {
         >
           <input className="dateTimeInput col-2" type="text" />
         </DateRangePicker>
-
         <div />
         <br />
         <br />
-
         <div style={{ textAlign: "left" }}>
           <p>
-            
             <span>
               <img
                 src={"./emergency.svg"}
@@ -120,33 +141,7 @@ export default class Dashboard extends React.Component {
             </span>
           </p>
         </div>
-        <div className="container">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col"> ID </th> <th scope="col"> Name </th>
-                <th scope="col"> Telephone </th> <th scope="col"> Status </th>
-                <th scope="col"> Create date </th> <th scope="col"> Send </th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.topUsers.map((element, index) => {
-                var mycreateDate = new Date(element.createDate * 1000);
-                var myupdateDate = new Date(element.updateDate * 1000);
-                return (
-                  <tr>
-                    <td> {element.id} </td> <td> {element.name} </td>
-                    <td> {element.phone} </td> <td> </td>
-                    <td> {mycreateDate.toLocaleString()}</td>
-                    <td>
-                      <button className="inTableButton"> Send </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <AgChartsReact options={this.state.options} />;
       </div>
     );
   }

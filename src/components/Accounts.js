@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import data from "./Data.json";
 import Users from "../users.json";
 import Navbar from "./Navbar.js";
@@ -17,11 +17,66 @@ export default class Accounts extends Component {
   }
 
   // function that sort the table order
-  ReArrange = () => {
-    let SortList = this.state.users.sort(function (a, b) {
+  ArrangeByName = () => {
+    let SortList = this.state.users.sort((a, b) => {
       if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
 
       if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+
+      return 0;
+    });
+    this.setState({ users: SortList });
+  };
+
+  ArrangeById = () => {
+    let SortList = this.state.users.sort((a, b) => {
+      if (a.id < b.id) return -1;
+
+      if (a.id > b.id) return 1;
+
+      return 0;
+    });
+    this.setState({ users: SortList });
+  };
+
+  ArrangeByPhone = () => {
+    let SortList = this.state.users.sort((a, b) => {
+      if (a.phone < b.phone) return -1;
+
+      if (a.phone > b.phone) return 1;
+
+      return 0;
+    });
+    this.setState({ users: SortList });
+  };
+
+  ArrangeByCDate = () => {
+    let SortList = this.state.users.sort((a, b) => {
+      if (a.createDate.toLowerCase() < b.createDate.toLowerCase()) return -1;
+
+      if (a.createDate.toLowerCase() > b.createDate.toLowerCase()) return 1;
+
+      return 0;
+    });
+    this.setState({ users: SortList });
+  };
+
+  ArrangeByDate = () => {
+    let SortList = this.state.users.sort((a, b) => {
+      if (a.updateDate.toLowerCase() < b.updateDate.toLowerCase()) return -1;
+
+      if (a.updateDate.toLowerCase() > b.updateDate.toLowerCase()) return 1;
+
+      return 0;
+    });
+    this.setState({ users: SortList });
+  };
+
+  ArrangeByRequests = () => {
+    let SortList = this.state.users.sort((a, b) => {
+      if (a.numOfRequests < b.numOfRequests) return -1;
+
+      if (a.numOfRequests > b.numOfRequests) return 1;
 
       return 0;
     });
@@ -72,13 +127,12 @@ export default class Accounts extends Component {
 
         <div style={{ marginTop: 30 }} className="container">
           <table className="table table-striped">
-      
             <thead>
               <tr>
                 <th scope="col">
                   <i
                     className="TableHeadStyle"
-                    onClick={() => this.ReArrange()}
+                    onClick={() => this.ArrangeById()}
                   >
                     ID
                   </i>
@@ -86,7 +140,7 @@ export default class Accounts extends Component {
                 <th scope="col">
                   <i
                     className="TableHeadStyle"
-                    onClick={() => this.ReArrange()}
+                    onClick={() => this.ArrangeByName()}
                   >
                     Name
                   </i>
@@ -94,7 +148,7 @@ export default class Accounts extends Component {
                 <th scope="col">
                   <i
                     className="TableHeadStyle"
-                    onClick={() => this.ReArrange()}
+                    onClick={() => this.ArrangeByPhone()}
                   >
                     Telephone
                   </i>
@@ -102,7 +156,7 @@ export default class Accounts extends Component {
                 <th scope="col">
                   <i
                     className="TableHeadStyle"
-                    onClick={() => this.ReArrange()}
+                    onClick={() => this.ArrangeByStatus()}
                   >
                     Status
                   </i>
@@ -110,7 +164,7 @@ export default class Accounts extends Component {
                 <th scope="col">
                   <i
                     className="TableHeadStyle"
-                    onClick={() => this.ReArrange()}
+                    onClick={() => this.ArrangeByCDate()}
                   >
                     Create date
                   </i>
@@ -118,7 +172,7 @@ export default class Accounts extends Component {
                 <th scope="col">
                   <i
                     className="TableHeadStyle"
-                    onClick={() => this.ReArrange()}
+                    onClick={() => this.ArrangeByDate()}
                   >
                     Last conection
                   </i>
@@ -126,7 +180,7 @@ export default class Accounts extends Component {
                 <th scope="col">
                   <i
                     className="TableHeadStyle"
-                    onClick={() => this.ReArrange()}
+                    onClick={() => this.ArrangeByRequests()}
                   >
                     Requests
                   </i>
