@@ -18,6 +18,9 @@ function App() {
           <Route exact path="/accounts">
             <Accounts />
           </Route>
+          <Route exact path="/reports">
+            <Reports/>
+          </Route>
         </Switch>
       </Router>
     </div>

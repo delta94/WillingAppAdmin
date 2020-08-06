@@ -32,8 +32,8 @@ export default class Navbar extends Component {
               </Link>
             </div>
             <div className="col-sm">
-              <Link className="linkstyle" path to="">
-                <button className="buttonStyle">Requests</button>
+              <Link className="linkstyle" path to="/reports">
+                <button className="buttonStyle">Reports</button>
               </Link>
             </div>
             <div className="col-8"></div>
