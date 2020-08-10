@@ -8,7 +8,7 @@ svg {
   margin-top: 5px;
 }
 
-.logo{
+.logo {
   width: 70px;
   text-align: left;
 }
@@ -21,10 +21,10 @@ svg {
   margin-top: 5px;
 }
 
-.linkstyle:hover{
-color: white;
-text-underline-position: none;
 
+.linkstyle {
+  color: white;
+  text-decoration: none;
 }
 .linkstyle{
   color: white;
@@ -34,6 +34,7 @@ text-underline-position: none;
 #buttons {
   margin-top: -5px;
 }
+
 button.buttonStyle {
   color: white;
   background: transparent;
@@ -51,7 +52,6 @@ button.buttonStyle {
 
 button.buttonStyle:before {
   content: "";
-  border-bottom: 1px solid white;
   padding: 0 10px;
   position: absolute;
   bottom: 0;
@@ -59,19 +59,17 @@ button.buttonStyle:before {
   right: 0;
   margin: 0 auto;
   width: 0;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  color: white;
-
+  -webkit-transition: 3s;
+  transition: 0.2s;
 }
 
 button.buttonStyle:hover:before {
+  border-bottom: 1px solid white;
   width: 100%;
   padding: 0;
   color: white;
 
 }
-
 
 button.buttonStyle:active {
   color: #fff;

@@ -1,4 +1,3 @@
-
 import React from "react";
 import Navbar from "./Navbar.js";
 import DateRangePicker from "react-bootstrap-daterangepicker";
@@ -6,14 +5,75 @@ import "../Dashboard.css";
 import { Link } from "react-router-dom";
 import data from "../Data.json";
 import Users from "../users.json";
+import { AgChartsReact } from "ag-charts-react";
 import axios from "axios";
 
 export default class Dashboard extends React.Component {
+  data = [
+    {
+      quarter: "january",
+      spending: 450,
+    },
+    {
+      quarter: "February",
+      spending: 560,
+    },
+    {
+      quarter: "march",
+      spending: 600,
+    },
+    {
+      quarter: "april",
+      spending: 700,
+    },
+    {
+      quarter: "may",
+      spending: 450,
+    },
+    {
+      quarter: "june",
+      spending:590 ,
+    },
+    {
+      quarter: "july",
+      spending: 420,
+    },
+    {
+      quarter: "auguest",
+      spending: 211,
+    },
+    {
+      quarter: "september",
+      spending: 399,
+    },
+    {
+      quarter: "october",
+      spending: 877,
+    },
+    {
+      quarter: "november",
+      spending: 333,
+    },
+    {
+      quarter: "december",
+      spending: 459,
+    },
+  ];
   constructor(props) {
     super(props);
   }
   state = {
+    options: {
+      data: this.data,
+      series: [
+        {
+          xKey: "quarter",
+          yKey: "spending",
+        },
+      ],
+    },
     Users: Users,
+    value:[],
     topUsers: [],
   };
 
@@ -24,8 +84,10 @@ export default class Dashboard extends React.Component {
     let a = x.filter((element, index) => index < 5);
     console.log(a);
     this.setState({ topUsers: a });
-  }
-  saveDatesInformation= async()=>{
+  };
+
+  
+  saveDatesInformation= async(e)=>{
     try{
       // send request to get the token from the server with phone number
       let res = await axios(
@@ -44,25 +106,26 @@ export default class Dashboard extends React.Component {
   }catch (e){
       console.log(`😱 Axios getInformation failed: ${e}`);
   }
+ var b= this.setState({value:e.target.value});
+  console.log (b) ;
   }
 
 
-  saveDatesinfo= () => {
-        // axios.get(`https://jsonplaceholder.typicode.com/users`)
-        axios.get(`https://cors-anywhere.herokuapp.com/ec2-52-91-26-189.compute-1.amazonaws.com:8080/X98ActivitieS/_summary`)
-        .then(res => {
-          const information = res.data;
-          console.log(5);
-          // console.log(information);
-          })
-        }
+  // saveDatesinfo= () => {
+  //       // axios.get(`https://jsonplaceholder.typicode.com/users`)
+  //       axios.get(`https://cors-anywhere.herokuapp.com/ec2-52-91-26-189.compute-1.amazonaws.com:8080/X98ActivitieS/_summary`)
+  //       .then(res => {
+  //         const information = res.data;
+  //         console.log(5);
+  //         // console.log(information);
+  //         })
+  //       }
   render() {
     console.log(this.state.topUsers);
     // let TopFiveUsers = this.state.Users.slice(0, 5);
     return (
       <div id="dates" style={{ textAlign: "right" }}>
         <Navbar />
-
         <DateRangePicker
           onApply={() => this.saveDatesInformation()}
           initialSettings={{
@@ -73,14 +136,18 @@ export default class Dashboard extends React.Component {
         >
           <input className="dateTimeInput col-2" type="text" />
         </DateRangePicker>
-
         <div />
+        <p style ={{ textAlign: "left" }}>
+          <span id="dataDate1">Total accaunts</span>
+          <span id="dataDate2">Total accaunt requesters</span>
+          <span id="dataDate3">Total accaunt users</span>
+          <span id="dataDate4">Total active requests</span>
+        </p>
         <br />
         <br />
-
         <div style={{ textAlign: "left" }}>
+        <AgChartsReact style={{backgroundColor:"white" , color:"#4d34c1" , width:"700px"}} id="chart" options={this.state.options} />;
           <p>
-            
             <span>
               <img
                 src={"./emergency.svg"}
@@ -146,33 +213,7 @@ export default class Dashboard extends React.Component {
             </span>
           </p>
         </div>
-        <div className="container">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col"> ID </th> <th scope="col"> Name </th>
-                <th scope="col"> Telephone </th> <th scope="col"> Status </th>
-                <th scope="col"> Create date </th> <th scope="col"> Send </th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.topUsers.map((element, index) => {
-                var mycreateDate = new Date(element.createDate * 1000);
-                var myupdateDate = new Date(element.updateDate * 1000);
-                return (
-                  <tr>
-                    <td> {element.id} </td> <td> {element.name} </td>
-                    <td> {element.phone} </td> <td> </td>
-                    <td> {mycreateDate.toLocaleString()}</td>
-                    <td>
-                      <button className="inTableButton"> Send </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+       
       </div>
     );
   }
