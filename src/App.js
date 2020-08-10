@@ -1,6 +1,8 @@
 import React from "react";
 import Accounts from "./components/Accounts.js";
 import Dashboard from "./components/Dashboard.js";
+import Reports from "./components/Reports.js";
+
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-daterangepicker/daterangepicker.css";
