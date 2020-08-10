@@ -103,13 +103,10 @@ export default class Accounts extends Component {
         {/* modal section */}
         <Modal show={this.state.status} onHide={() => this.handleClose()}>
           <Modal.Header closeButton>
-            <Modal.Title>Your Note</Modal.Title>
+            <Modal.Title>Send Notification to User Name</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <textarea
-              placeholder="Write your note here"
-              className="textareaStyle"
-            />
+            <textarea className="textareaStyle" />
           </Modal.Body>
           <Modal.Footer>
             <button
@@ -119,7 +116,7 @@ export default class Accounts extends Component {
               Close
             </button>
             <button className="modalBTN" onClick={() => this.handleClose()}>
-              Save & Send
+              Send
             </button>
           </Modal.Footer>
         </Modal>

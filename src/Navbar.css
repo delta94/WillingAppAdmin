@@ -111,6 +111,8 @@ button.buttonStyle:active {
 .textareaStyle {
   width: 100%;
   height: 80px;
+  background-color: #f7f8fa;
+  border-color: transparent;
 }
 
 .modalBTN {
