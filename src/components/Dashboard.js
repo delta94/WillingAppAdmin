@@ -32,7 +32,7 @@ export default class Dashboard extends React.Component {
     },
     {
       quarter: "june",
-      spending:590 ,
+      spending: 590,
     },
     {
       quarter: "july",
@@ -73,7 +73,7 @@ export default class Dashboard extends React.Component {
       ],
     },
     Users: Users,
-    value:[],
+    value: [],
     topUsers: [],
   };
 
@@ -86,30 +86,28 @@ export default class Dashboard extends React.Component {
     this.setState({ topUsers: a });
   };
 
-  
-  saveDatesInformation= async(e)=>{
-    try{
+  saveDatesInformation = async (e) => {
+    try {
       // send request to get the token from the server with phone number
-      let res = await axios(
-      {
-          url:"https://cors-anywhere.herokuapp.com/ec2-52-91-26-189.compute-1.amazonaws.com:8080/X98ActivitieS/_summary",
-          // adress to cors https://cors-anywhere.herokuapp.com/
-          method:"get",
-          headers: {
-            'content-type':'application/json',
-            'X-Requested-With':'XMLhttpRequest'
-          },
-      })
-    
-      let data = res.data;
-      console.log(data)
-  }catch (e){
-      console.log(`😱 Axios getInformation failed: ${e}`);
-  }
- var b= this.setState({value:e.target.value});
-  console.log (b) ;
-  }
+      let res = await axios({
+        url:
+          "https://cors-anywhere.herokuapp.com/ec2-52-91-26-189.compute-1.amazonaws.com:8080/X98ActivitieS/_summary",
+        // adress to cors https://cors-anywhere.herokuapp.com/
+        method: "get",
+        headers: {
+          "content-type": "application/json",
+          "X-Requested-With": "XMLhttpRequest",
+        },
+      });
 
+      let data = res.data;
+      console.log(data);
+    } catch (e) {
+      console.log(`😱 Axios getInformation failed: ${e}`);
+    }
+    var b = this.setState({ value: e.target.value });
+    console.log(b);
+  };
 
   // saveDatesinfo= () => {
   //       // axios.get(`https://jsonplaceholder.typicode.com/users`)
@@ -137,7 +135,7 @@ export default class Dashboard extends React.Component {
           <input className="dateTimeInput col-2" type="text" />
         </DateRangePicker>
         <div />
-        <p style ={{ textAlign: "left" }}>
+        <p style={{ textAlign: "left" }}>
           <span id="dataDate1">Total accaunts</span>
           <span id="dataDate2">Total accaunt requesters</span>
           <span id="dataDate3">Total accaunt users</span>
@@ -146,7 +144,16 @@ export default class Dashboard extends React.Component {
         <br />
         <br />
         <div style={{ textAlign: "left" }}>
-        <AgChartsReact style={{backgroundColor:"white" , color:"#4d34c1" , width:"700px"}} id="chart" options={this.state.options} />;
+          <AgChartsReact
+            style={{
+              backgroundColor: "white",
+              color: "#4d34c1",
+              width: "700px",
+            }}
+            id="chart"
+            options={this.state.options}
+          />
+          ;
           <p>
             <span>
               <img
@@ -213,7 +220,6 @@ export default class Dashboard extends React.Component {
             </span>
           </p>
         </div>
-       
       </div>
     );
   }

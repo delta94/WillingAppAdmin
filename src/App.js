@@ -1,6 +1,7 @@
 import React from "react";
 import Accounts from "./components/Accounts.js";
 import Dashboard from "./components/Dashboard.js";
+import Reports from "./components/Reports";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-daterangepicker/daterangepicker.css";
@@ -17,6 +18,9 @@ function App() {
 
           <Route exact path="/accounts">
             <Accounts />
+          </Route>
+          <Route exact path="/reports">
+            <Reports />
           </Route>
         </Switch>
       </Router>

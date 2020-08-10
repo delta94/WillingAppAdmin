@@ -12,10 +12,10 @@ export default class Navbar extends Component {
             </div>
             <div className="col-8"></div>
             <div className="col-sm">
-              <img
+              {/* <img
                 className="userImg"
                 src="https://i.pinimg.com/originals/ba/30/7a/ba307ac530b3524e44cf8af6aa717fb5.jpg"
-              />
+              /> */}
             </div>
             <div className="col-sm"></div>
           </div>
@@ -27,13 +27,13 @@ export default class Navbar extends Component {
               </Link>
             </div>
             <div className="col-sm">
-              <Link className="linkstyle" path to="/accounts/">
+              <Link className="linkstyle" path to="/accounts">
                 <button className="buttonStyle">Accounts</button>
               </Link>
             </div>
             <div className="col-sm">
-              <Link className="linkstyle" path to="">
-                <button className="buttonStyle">Requests</button>
+              <Link className="linkstyle" path to="/reports">
+                <button className="buttonStyle">Reports</button>
               </Link>
             </div>
             <div className="col-8"></div>
