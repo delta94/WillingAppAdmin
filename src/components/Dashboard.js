@@ -60,20 +60,22 @@ export default class Dashboard extends React.Component {
   ];
   constructor(props) {
     super(props);
+    this.state = {
+      options: {
+        data: this.data,
+        series: [
+          {
+            xKey: "quarter",
+            yKey: "spending",
+          },
+        ],
+      },
+      Users: Users,
+      topUsers: [],
+      DateRange: null,
+      registersData: "",
+    };
   }
-  state = {
-    options: {
-      data: this.data,
-      series: [
-        {
-          xKey: "quarter",
-          yKey: "spending",
-        },
-      ],
-    },
-    Users: Users,
-    topUsers: [],
-  };
 
   componentDidMount = () => {
     let y = Users;
@@ -87,9 +89,12 @@ export default class Dashboard extends React.Component {
   saveDatesInformation = async (e) => {
     try {
       // send request to get the token from the server with phone number
+      let endDate = this.state.DateRange.slice(0, 10);
+      let startDate = this.state.DateRange.slice(13, 23);
+      console.log(endDate);
+      console.log(startDate);
       let res = await axios({
-        url:
-          "https://cors-anywhere.herokuapp.com/ec2-52-91-26-189.compute-1.amazonaws.com:8080/X98ActivitieS/_summary",
+        url: `https://cors-anywhere.herokuapp.com/http://ec2-52-91-26-189.compute-1.amazonaws.com:8080/X98ActivitieS/_filters?from=${startDate}&to=${endDate}`,
         // adress to cors https://cors-anywhere.herokuapp.com/
         method: "get",
         headers: {
@@ -100,13 +105,14 @@ export default class Dashboard extends React.Component {
       // alert('works')
       let data = res.data;
       console.log(data);
-      document.getElementById("dataDate1").innerHTML = data.totalAccounts;
-      document.getElementById("dataDate2").innerHTML =
-        data.totalActiveRequesterLastMonth;
-      document.getElementById("dataDate3").innerHTML = data.totalActiveUsers;
-      document.getElementById("dataDate4").innerHTML = data.totalActiveRequests;
-    } catch (e) {
-      console.log(`😱 Axios getInformation failed: ${e}`);
+      this.setState({ registersData: data });
+      // document.getElementById("dataDate1").innerHTML = data.totalAccounts;
+      // document.getElementById("dataDate2").innerHTML =
+      //   data.totalActiveRequesterLastMonth;
+      // document.getElementById("dataDate3").innerHTML = data.totalActiveUsers;
+      // document.getElementById("dataDate4").innerHTML = data.totalActiveRequests;
+    } catch (err) {
+      console.log(`😱 Axios getInformation failed: ${err}`);
     }
     // this.setState({value: e.target.value});
     // console.log(e.target.value);
@@ -121,26 +127,64 @@ export default class Dashboard extends React.Component {
   //         // console.log(information);
   //         })
   //       }
+
+  handleEvent = (event, picker) => {
+    console.log(event.currentTarget.value);
+    this.setState({ DateRange: event.currentTarget.value });
+  };
+
   render() {
     return (
       <div id="dates" style={{ textAlign: "right" }}>
-        <DateRangePicker
-          onApply={() => this.saveDatesInformation()}
-          initialSettings={{
-            showDropdowns: true,
-          }}
-          startDate="1/1/2014"
-          endDate="3/1/2014"
-        >
-          <input className="dateTimeInput col-2" type="text" />
-        </DateRangePicker>
         <div />
-        <p style={{ textAlign: "left" }}>
-          Total accaunts <span id="dataDate1"></span>
-          Total accaunt requesters<span id="dataDate2"></span>
-          Total accaunt users<span id="dataDate3"></span>
-          Total active requests<span id="dataDate4"></span>
-        </p>
+        <div id="datesANDduser" className="row">
+          <div className="col-2">
+            <p className="usersInfo">
+              <span id="dataDate1">
+                {this.state.registersData.addRequestCount}
+              </span>
+              <br />
+              Total Requests
+            </p>
+          </div>
+          <div className="col-2">
+            <p className="usersInfo">
+              <span id="dataDate2">
+                {this.state.registersData.uniqueUsersCount}
+              </span>
+              <br />
+              Total Uniqe users
+            </p>
+          </div>
+          <div className="col-2">
+            <p className="usersInfo">
+              <span id="dataDate3">
+                {this.state.registersData.registerCount}
+              </span>
+              <br />
+              Total registers
+            </p>
+          </div>
+
+          <div className="col-4">
+            <DateRangePicker
+              onEvent={this.handleEvent}
+              onChange={this.handleChange}
+              onApply={() => this.saveDatesInformation()}
+              initialSettings={{
+                showDropdowns: true,
+              }}
+              startDate="1/1/2014"
+              endDate="3/1/2014"
+            >
+              <input
+                onChange={this.handleChange}
+                className="dateTimeInput "
+                type="text"
+              />
+            </DateRangePicker>
+          </div>
+        </div>
         <br />
         <br />
         <div style={{ textAlign: "left" }}>
