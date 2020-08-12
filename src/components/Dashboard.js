@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "./Navbar.js";
 import DateRangePicker from "react-bootstrap-daterangepicker";
 import "../Dashboard.css";
 import { Link } from "react-router-dom";
@@ -73,16 +72,15 @@ export default class Dashboard extends React.Component {
       ],
     },
     Users: Users,
-    value: [],
     topUsers: [],
   };
 
   componentDidMount = () => {
     let y = Users;
     let x = Users.sort((a, b) => (b.numOfRequests > a.numOfRequests ? 1 : -1));
-    console.log(x);
+    // console.log(x);
     let a = x.filter((element, index) => index < 5);
-    console.log(a);
+    // console.log(a);
     this.setState({ topUsers: a });
   };
 
@@ -99,14 +97,19 @@ export default class Dashboard extends React.Component {
           "X-Requested-With": "XMLhttpRequest",
         },
       });
-
+      // alert('works')
       let data = res.data;
       console.log(data);
+      document.getElementById("dataDate1").innerHTML = data.totalAccounts;
+      document.getElementById("dataDate2").innerHTML =
+        data.totalActiveRequesterLastMonth;
+      document.getElementById("dataDate3").innerHTML = data.totalActiveUsers;
+      document.getElementById("dataDate4").innerHTML = data.totalActiveRequests;
     } catch (e) {
       console.log(`😱 Axios getInformation failed: ${e}`);
     }
-    var b = this.setState({ value: e.target.value });
-    console.log(b);
+    // this.setState({value: e.target.value});
+    // console.log(e.target.value);
   };
 
   // saveDatesinfo= () => {
@@ -119,11 +122,8 @@ export default class Dashboard extends React.Component {
   //         })
   //       }
   render() {
-    console.log(this.state.topUsers);
-    // let TopFiveUsers = this.state.Users.slice(0, 5);
     return (
       <div id="dates" style={{ textAlign: "right" }}>
-        <Navbar />
         <DateRangePicker
           onApply={() => this.saveDatesInformation()}
           initialSettings={{
@@ -136,10 +136,10 @@ export default class Dashboard extends React.Component {
         </DateRangePicker>
         <div />
         <p style={{ textAlign: "left" }}>
-          <span id="dataDate1">Total accaunts</span>
-          <span id="dataDate2">Total accaunt requesters</span>
-          <span id="dataDate3">Total accaunt users</span>
-          <span id="dataDate4">Total active requests</span>
+          Total accaunts <span id="dataDate1"></span>
+          Total accaunt requesters<span id="dataDate2"></span>
+          Total accaunt users<span id="dataDate3"></span>
+          Total active requests<span id="dataDate4"></span>
         </p>
         <br />
         <br />

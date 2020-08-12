@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import data from "./Data.json";
 import Users from "../users.json";
-import Navbar from "./Navbar.js";
 import Modal from "react-bootstrap/Modal";
 import "../Navbar.css";
 
@@ -13,6 +12,7 @@ export default class Accounts extends Component {
     this.state = {
       users: Users,
       status: false,
+      note: false,
     };
   }
 
@@ -91,6 +91,8 @@ export default class Accounts extends Component {
       this.setState({ status: true });
     }
   };
+  handleNoteClose = () => this.setState({ note: false });
+  handleNoteShow = () => this.setState({ note: true });
 
   handleClose = () => this.setState({ status: false });
   handleShow = () => this.setState({ status: true });
@@ -99,7 +101,6 @@ export default class Accounts extends Component {
     document.body.style = "background: #f5f5f5;";
     return (
       <div>
-        <Navbar />
         {/* modal section */}
         <Modal show={this.state.status} onHide={() => this.handleClose()}>
           <Modal.Header closeButton>
@@ -121,6 +122,39 @@ export default class Accounts extends Component {
           </Modal.Footer>
         </Modal>
         {/* modal section ends */}
+        <Modal show={this.state.note} onHide={() => this.handleNoteClose()}>
+          <Modal.Header closeButton>
+            <Modal.Title>Report Details:</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h6>Report description:</h6>
+            <p>Report description </p>
+            <h6>Reson</h6>
+            <p> reson description</p>
+            <h6>Reporters' Details</h6>
+            <p>
+              name
+              <br />
+              phone number{" "}
+            </p>
+            <h6>send notification to user name</h6>
+            <textarea
+              placeholder="Write your note here"
+              className="textareaStyle"
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <button
+              className="btn btn-secondary"
+              onClick={() => this.handleNoteClose()}
+            >
+              Cancel
+            </button>
+            <button className="modalBTN" onClick={() => this.handleNoteClose()}>
+              send
+            </button>
+          </Modal.Footer>
+        </Modal>
 
         <div style={{ marginTop: 30 }} className="container">
           <table className="table table-striped">
@@ -192,7 +226,7 @@ export default class Accounts extends Component {
                 var mycreateDate = new Date(element.createDate * 1000);
                 var myupdateDate = new Date(element.updateDate * 1000);
                 return (
-                  <tr>
+                  <tr onClick={() => this.handleNoteShow()}>
                     <td>{element.id}</td>
                     <td>{element.name}</td>
                     <td>{element.phone} </td> <td> </td>
