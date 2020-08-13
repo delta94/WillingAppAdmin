@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import Users from "../users.json";
+import { ReactComponent as ReactLogo } from "../Dots.svg";
+import "../Reports.css";
+
 export default class Reports extends Component {
   constructor(props) {
     super(props);
@@ -136,14 +139,28 @@ export default class Reports extends Component {
                 <td onClick={this.handleNoteShow}></td>
                 <td className="sendButton">
                   <p>
-                    {" "}
-                    <input type="submit" value="confirm" />{" "}
+                    <button
+                      id="lightButton"
+                      type="button"
+                      className="btn btn-light"
+                    >
+                      confirm
+                    </button>
+                    <button
+                      id="redButton"
+                      type="button"
+                      onClick={this.handleShow}
+                      className="btn btn-danger"
+                    >
+                      delete
+                    </button>
+                    {/* <input type="submit" value="confirm" />
                     <input
                       type="submit"
                       value="delete"
                       style={{ backgroundColor: "#de4b4c", color: "white" }}
-                      onClick={this.handleShow}
-                    />
+                    /> */}
+                    <ReactLogo />
                   </p>
                 </td>
               </tr>

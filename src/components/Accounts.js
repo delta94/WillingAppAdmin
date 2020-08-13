@@ -223,8 +223,8 @@ export default class Accounts extends Component {
             </thead>
             <tbody>
               {this.state.users.map((element) => {
-                var mycreateDate = new Date(element.createDate * 1000);
-                var myupdateDate = new Date(element.updateDate * 1000);
+                var mycreateDate = new Date(parseInt(element.createDate));
+                var myupdateDate = new Date(parseInt(element.updateDate));
                 return (
                   <tr onClick={() => this.handleNoteShow()}>
                     <td>{element.id}</td>
