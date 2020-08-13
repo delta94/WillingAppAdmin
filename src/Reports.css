@@ -1,9 +1,15 @@
 #lightButton {
     border: solid 1px #aaa0a0;
     margin-right: 5px;
+    height: 35px;
+    border-radius: 5px;
+
 }
 
 #redButton {
+    border-radius: 5px;
+    background-color: #de4b4c;
+    color: white;
     border: solid 1px #aaa0a0;
-
+    height: 35px;
 }

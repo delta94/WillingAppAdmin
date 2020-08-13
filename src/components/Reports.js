@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import Users from "../users.json";
 import { ReactComponent as ReactLogo } from "../Dots.svg";
+import Dropdown from "react-bootstrap/Dropdown";
 import "../Reports.css";
 
 export default class Reports extends Component {
@@ -138,30 +139,14 @@ export default class Reports extends Component {
                 <td onClick={this.handleNoteShow}> </td>
                 <td onClick={this.handleNoteShow}></td>
                 <td className="sendButton">
-                  <p>
-                    <button
-                      id="lightButton"
-                      type="button"
-                      className="btn btn-light"
-                    >
-                      confirm
-                    </button>
-                    <button
-                      id="redButton"
-                      type="button"
-                      onClick={this.handleShow}
-                      className="btn btn-danger"
-                    >
-                      delete
-                    </button>
-                    {/* <input type="submit" value="confirm" />
-                    <input
-                      type="submit"
-                      value="delete"
-                      style={{ backgroundColor: "#de4b4c", color: "white" }}
-                    /> */}
-                    <ReactLogo />
-                  </p>
+                  <input id="lightButton" type="submit" value="confirm" />
+                  <input
+                    id="redButton"
+                    onClick={this.handleShow}
+                    type="submit"
+                    value="delete"
+                  />
+                  <ReactLogo style={{ marginTop: 0 }} />
                 </td>
               </tr>
             </tbody>
