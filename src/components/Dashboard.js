@@ -89,10 +89,10 @@ export default class Dashboard extends React.Component {
   saveDatesInformation = async (e) => {
     try {
       // send request to get the token from the server with phone number
-      let endDate = this.state.DateRange.slice(0, 10);
-      let startDate = this.state.DateRange.slice(13, 23);
-      console.log(endDate);
+      let startDate = this.state.DateRange.slice(3,5) +"/"+ this.state.DateRange.slice(0,3)+ this.state.DateRange.slice(6,10);
+      let endDate = this.state.DateRange.slice(16,19)+ this.state.DateRange.slice(13,15)+ this.state.DateRange.slice(18,23)
       console.log(startDate);
+      console.log(endDate);
       let res = await axios({
         url: `https://cors-anywhere.herokuapp.com/http://ec2-52-91-26-189.compute-1.amazonaws.com:8080/X98ActivitieS/_filters?from=${startDate}&to=${endDate}`,
         // adress to cors https://cors-anywhere.herokuapp.com/
@@ -141,10 +141,10 @@ export default class Dashboard extends React.Component {
           <div className="col-2">
             <p className="usersInfo">
               <span id="dataDate1">
-                {this.state.registersData.addRequestCount}
+                {this.state.registersData.registerCount}
               </span>
               <br />
-              Total Requests
+              Total active accounts
             </p>
           </div>
           <div className="col-2">
@@ -153,16 +153,16 @@ export default class Dashboard extends React.Component {
                 {this.state.registersData.uniqueUsersCount}
               </span>
               <br />
-              Total Uniqe users
+              Total active users
             </p>
           </div>
           <div className="col-2">
             <p className="usersInfo">
               <span id="dataDate3">
-                {this.state.registersData.registerCount}
+                {this.state.registersData.addRequestCount}
               </span>
               <br />
-              Total registers
+              Total requests
             </p>
           </div>
 

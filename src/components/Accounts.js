@@ -127,21 +127,18 @@ export default class Accounts extends Component {
             <Modal.Title>Report Details:</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h6>Report description:</h6>
-            <p>Report description </p>
-            <h6>Reson</h6>
-            <p> reson description</p>
-            <h6>Reporters' Details</h6>
+            <h6>ID:</h6>
+            <p> </p>
+            <h6>Name</h6>
+            <p> phone number</p>
+            <h6></h6>
             <p>
-              name
+            
               <br />
-              phone number{" "}
+              
             </p>
-            <h6>send notification to user name</h6>
-            <textarea
-              placeholder="Write your note here"
-              className="textareaStyle"
-            />
+            
+           
           </Modal.Body>
           <Modal.Footer>
             <button
@@ -150,9 +147,9 @@ export default class Accounts extends Component {
             >
               Cancel
             </button>
-            <button className="modalBTN" onClick={() => this.handleNoteClose()}>
+            {/* <button className="modalBTN" onClick={() => this.handleNoteClose()}>
               send
-            </button>
+            </button> */}
           </Modal.Footer>
         </Modal>
 
