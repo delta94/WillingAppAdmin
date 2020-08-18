@@ -62,6 +62,13 @@ export default class Dashboard extends React.Component {
     },
   ];
   constructor(props) {
+    var today = new Date(),
+      currentDate =
+        today.getDate() +
+        "/" +
+        (today.getMonth() + 1) +
+        "/" +
+        today.getFullYear();
     super(props);
     this.state = {
       options: {
@@ -73,6 +80,7 @@ export default class Dashboard extends React.Component {
           },
         ],
       },
+      currentDate: currentDate,
       Users: Users,
       topUsers: [],
       DateRange: null,
@@ -80,20 +88,75 @@ export default class Dashboard extends React.Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     let y = Users;
     let x = Users.sort((a, b) => (b.numOfRequests > a.numOfRequests ? 1 : -1));
     // console.log(x);
     let a = x.filter((element, index) => index < 5);
     // console.log(a);
     this.setState({ topUsers: a });
+
+    try {
+      // send request to get the token from the server with phone number
+      // let startDate =
+      //   this.state.DateRange.slice(3, 5) +
+      //   "/" +
+      //   this.state.DateRange.slice(0, 3) +
+      //   this.state.DateRange.slice(6, 10);
+      // let endDate =
+      //   this.state.DateRange.slice(16, 19) +
+      //   this.state.DateRange.slice(13, 15) +
+      //   this.state.DateRange.slice(18, 23);
+      // console.log(startDate);
+      // console.log(endDate);
+      let res = await axios({
+        url: `https://cors-anywhere.herokuapp.com/http://ec2-52-91-26-189.compute-1.amazonaws.com:8080/X98ActivitieS/_filters?from=01/01/2018&to=${this.state.currentDate}`,
+        // adress to cors https://cors-anywhere.herokuapp.com/
+        method: "get",
+        headers: {
+          "content-type": "application/json",
+          "X-Requested-With": "XMLhttpRequest",
+        },
+      });
+      // alert("works");
+      let data = res.data;
+      console.log(data);
+      this.setState({ registersData: data });
+    } catch (err) {
+      console.log(`😱 Axios getInformation failed: ${err}`);
+    }
+
+    // axios
+    //   .get({
+    //     url: `https://cors-anywhere.herokuapp.com/http://ec2-52-91-26-189.compute-1.amazonaws.com:8080/X98ActivitieS/_filters?from=01.01.2018&to=${this.state.currentDate}`,
+    //     headers: {
+    //       "content-type": "application/json",
+    //       "X-Requested-With": "XMLhttpRequest",
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //     let data = res.data;
+    //     console.log(data);
+    //     this.setState({ registersData: data });
+    //   })
+    //   .catch((err) => {
+    //     console.log(`😱 Axios getInformation failed: ${err}`);
+    //   });
   };
 
   saveDatesInformation = async (e) => {
     try {
       // send request to get the token from the server with phone number
-      let startDate = this.state.DateRange.slice(3,5) +"/"+ this.state.DateRange.slice(0,3)+ this.state.DateRange.slice(6,10);
-      let endDate = this.state.DateRange.slice(16,19)+ this.state.DateRange.slice(13,15)+ this.state.DateRange.slice(18,23)
+      let startDate =
+        this.state.DateRange.slice(3, 5) +
+        "/" +
+        this.state.DateRange.slice(0, 3) +
+        this.state.DateRange.slice(6, 10);
+      let endDate =
+        this.state.DateRange.slice(16, 19) +
+        this.state.DateRange.slice(13, 15) +
+        this.state.DateRange.slice(18, 23);
       console.log(startDate);
       console.log(endDate);
       let res = await axios({
@@ -109,16 +172,9 @@ export default class Dashboard extends React.Component {
       let data = res.data;
       console.log(data);
       this.setState({ registersData: data });
-      // document.getElementById("dataDate1").innerHTML = data.totalAccounts;
-      // document.getElementById("dataDate2").innerHTML =
-      //   data.totalActiveRequesterLastMonth;
-      // document.getElementById("dataDate3").innerHTML = data.totalActiveUsers;
-      // document.getElementById("dataDate4").innerHTML = data.totalActiveRequests;
     } catch (err) {
       console.log(`😱 Axios getInformation failed: ${err}`);
     }
-    // this.setState({value: e.target.value});
-    // console.log(e.target.value);
   };
 
   // saveDatesinfo= () => {
