@@ -1,6 +1,6 @@
 import React from "react";
 import Accounts from "./components/Accounts.js";
-import Dashboard from "./components/Dashboard.js";
+import Dashboard from "./components/Dashboard copy.js";
 import Reports from "./components/Reports.js";
 import Navbar from "./components/Navbar";
 import "./App.css";

@@ -4,7 +4,10 @@ import "../Dashboard.css";
 import { Link } from "react-router-dom";
 import data from "../Data.json";
 import Users from "../users.json";
-import { AgChartsReact } from "ag-charts-react";
+// import { AgChartsReact } from "ag-charts-react";
+import CanvasJSReact from '../assets/canvasjs.react';
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+ 
 import axios from "axios";
 
 export default class Dashboard extends React.Component {
