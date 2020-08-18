@@ -8,7 +8,7 @@ export default class Navbar extends Component {
         <nav className="navbarStyle">
           <div style={{ marginRight: 0 }} className="row">
             <div className="col-1">
-              <img className="logo" src="./logo_willingsvg_white.svg" />
+              <img className="logo" src="./willing_logo.png" />
             </div>
             <div className="col-8"></div>
             <div className="col-sm">
