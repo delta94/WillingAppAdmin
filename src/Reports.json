@@ -1,0 +1,25 @@
+[{
+        "descrirtion": "in appropriate launguage",
+        "type": "null",
+        "status": "open",
+        "date": "01/01/2019"
+    },
+    {
+        "descrirtion": "false post",
+        "type": "null",
+        "status": "close",
+        "date": "01/02/2019"
+    },
+    {
+        "descrirtion": "not relevant anymore",
+        "type": "null",
+        "status": "deleted",
+        "date": "01/03/2019"
+    },
+    {
+        "descrirtion": "not readable(jibrish)",
+        "type": "null",
+        "status": "open",
+        "date": "01/04/2019"
+    }
+]
