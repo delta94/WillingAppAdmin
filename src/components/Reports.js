@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import Navbar from './Navbar';
 import Users from "../users.json";
 import { ReactComponent as ReactLogo } from "../Dots.svg";
+import UsersReports from "../Reports.json";
 import Dropdown from "react-bootstrap/Dropdown";
 import "../Reports.css";
 
@@ -111,46 +112,61 @@ export default class Reports extends Component {
                 <th scope="col">
                   <i className="TableHeadStyle">type</i>
                 </th>
-                <th scope="col">
+                {/* <th scope="col">
                   <i className="TableHeadStyle"></i>
-                </th>
+                </th> */}
                 <th scope="col">
                   <i className="TableHeadStyle">Status</i>
                 </th>
                 <th scope="col">
                   <i className="TableHeadStyle">date</i>
                 </th>
-                <th scope="col">
+                {/* <th scope="col">
                   <i className="TableHeadStyle"></i>
                 </th>
                 <th scope="col">
                   <i className="TableHeadStyle"></i>
-                </th>
+                </th> */}
                 <th className="sendBurronStyle" scope="col">
                   block
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td onClick={this.handleNoteShow}></td>
-                <td onClick={this.handleNoteShow}></td>
-                <td onClick={this.handleNoteShow}> </td>{" "}
-                <td onClick={this.handleNoteShow}> </td>
-                <td onClick={this.handleNoteShow}> </td>
-                <td onClick={this.handleNoteShow}> </td>
-                <td onClick={this.handleNoteShow}></td>
-                <td className="sendButton">
-                  <input id="lightButton" type="submit" value="confirm" />
-                  <input
-                    id="redButton"
-                    onClick={this.handleShow}
-                    type="submit"
-                    value="delete"
-                  />
-                  <ReactLogo style={{ marginTop: 0 }} />
-                </td>
-              </tr>
+              {UsersReports.map((element) => {
+                let color = "#5ac25a";
+                if (element.status === "close") {
+                  color = "red";
+                } else if (element.status === "open") {
+                  color = "#5ac25a";
+                } else {
+                  color = "orange";
+                }
+                return (
+                  <tr onClick={this.handleNoteShow}>
+                    <td>{element.descrirtion}</td>
+                    <td>{element.type}</td>
+                    <td style={{ textAlign: "left" }}>
+                      <span
+                        style={{ backgroundColor: `${color}` }}
+                        className="dot"
+                      ></span>
+                      {element.status}
+                    </td>
+                    <td>{element.date}</td>
+                    <td className="sendButton">
+                      <input id="lightButton" type="submit" value="confirm" />
+                      <input
+                        id="redButton"
+                        onClick={this.handleShow}
+                        type="submit"
+                        value="delete"
+                      />
+                      <ReactLogo style={{ marginTop: 0 }} />
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

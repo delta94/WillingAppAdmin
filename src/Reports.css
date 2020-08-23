@@ -13,3 +13,12 @@
     border: solid 1px #aaa0a0;
     height: 35px;
 }
+
+.dot {
+    height: 6px;
+    width: 6px;
+    background-color: #5ac25a;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 2px;
+}
