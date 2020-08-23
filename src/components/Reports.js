@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
+import Navbar from './Navbar';
 import Users from "../users.json";
 import { ReactComponent as ReactLogo } from "../Dots.svg";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -41,6 +42,7 @@ export default class Reports extends Component {
   render() {
     return (
       <div>
+                <Navbar />
         {/* modal section */}
         <Modal show={this.state.status} onHide={() => this.handleClose()}>
           <Modal.Header closeButton>

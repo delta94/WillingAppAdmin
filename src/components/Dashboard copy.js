@@ -12,26 +12,26 @@ class SplineAreaChart extends Component {
 			axisY: {
 				// title: " number of users",
 				includeZero: false,
-				suffix: " kWh"
+				// suffix: " kWh"
 			},
 			data: [{
-				type: "splineArea",
-				// xValueFormatString: "+",
-				// yValueFormatString: "",
-				// showInLegend: true,
-        // legendText: "monthes of the year",
-        color: "#000",
+				// type: "splineArea",
+				xValueFormatString: "+",
+				yValueFormatString: "",
+				showInLegend: true,
+        legendText: "monthes of the year",
+        color: "#4d34c1",
 				dataPoints: [
-					{ x: new Date(2008, 0), y: 70.735 },
-					{ x: new Date(2009, 0), y: 74.102 },
-					{ x: new Date(2010, 0), y: 72.569 },
-					{ x: new Date(2011, 0), y: 72.743 },
-					{ x: new Date(2012, 0), y: 72.381 },
-					{ x: new Date(2013, 0), y: 71.406 },
-					{ x: new Date(2014, 0), y: 73.163 },
-					{ x: new Date(2015, 0), y: 74.270 },
-					{ x: new Date(2016, 0), y: 72.525 },
-					{ x: new Date(2017, 0), y: 73.121 }
+					{ x: "january", y: 450 },
+					{ x: "February", y: 74.102 },
+					{ x: "march", y: 72.569 },
+					{ x: "april", y: 72.743 },
+					{ x: "may", y: 72.381 },
+					{ x: "june", y: 71.406 },
+					{ x:"july" , y: 73.163 },
+					{ x: "auguest", y: 74.270 },
+					{ x:"september" , y: 72.525 },
+					{ x:"october" , y: 73.121 }
 				]
 			}]
 		}

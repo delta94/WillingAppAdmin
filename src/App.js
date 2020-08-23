@@ -1,7 +1,8 @@
 import React from "react";
 import Accounts from "./components/Accounts.js";
-import Dashboard from "./components/Dashboard copy.js";
+import Dashboard from "./components/Dashboard.js";
 import Reports from "./components/Reports.js";
+import LogIn from './components/LogIn';
 import Navbar from "./components/Navbar";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,9 +13,11 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar />
         <Switch>
-          <Route exact path="/">
+          <Route exact path ="/">
+            <LogIn/>
+          </Route>
+          <Route exact path="/dashboard">
             <Dashboard />
           </Route>
 

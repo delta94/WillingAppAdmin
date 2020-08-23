@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Navbar from './Navbar';
 import data from "./Data.json";
 import Users from "../users.json";
 import Modal from "react-bootstrap/Modal";
@@ -101,6 +102,7 @@ export default class Accounts extends Component {
     document.body.style = "background: #f5f5f5;";
     return (
       <div>
+                <Navbar />
         {/* modal section */}
         <Modal show={this.state.status} onHide={() => this.handleClose()}>
           <Modal.Header closeButton>
