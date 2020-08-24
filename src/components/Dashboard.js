@@ -5,18 +5,12 @@ import { Link } from "react-router-dom";
 import data from "../Data.json";
 import Users from "../users.json";
 import { AgChartsReact } from "ag-charts-react";
-<<<<<<< HEAD
 import CanvasJSReact from '../assets/canvasjs.react';
 import Navbar from './Navbar';
 import Graph from './Dashboard copy';
 import axios from "axios";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
  
-=======
-import CanvasJSReact from "../assets/canvasjs.react";
-import axios from "axios";
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
->>>>>>> 71e8d4d4abd11f80cb253a04dae506d2131bcfa4
 
 export default class Dashboard extends React.Component {
   // data = [
