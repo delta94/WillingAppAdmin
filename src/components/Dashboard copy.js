@@ -15,23 +15,23 @@ class SplineAreaChart extends Component {
 				// suffix: " kWh"
 			},
 			data: [{
-				// type: "splineArea",
-				xValueFormatString: "+",
-				yValueFormatString: "",
-				showInLegend: true,
-        legendText: "monthes of the year",
+				type: "splineArea",
+				// xValueFormatString: "+",
+				// yValueFormatString: "",
+				// showInLegend: true,
+        // legendText: "monthes of the year",
         color: "#4d34c1",
 				dataPoints: [
-					{ x: "january", y: 450 },
-					{ x: "February", y: 74.102 },
-					{ x: "march", y: 72.569 },
-					{ x: "april", y: 72.743 },
-					{ x: "may", y: 72.381 },
-					{ x: "june", y: 71.406 },
-					{ x:"july" , y: 73.163 },
-					{ x: "auguest", y: 74.270 },
-					{ x:"september" , y: 72.525 },
-					{ x:"october" , y: 73.121 }
+					{ x: new Date(2019, 1), y: 30 },
+					{ x: new Date(2019, 2), y: 45 },
+					{ x: new Date(2019,3), y: 76 },
+					{ x: new Date(2019, 4), y: 79 },
+					{ x: new Date(2019, 5), y: 81 },
+					{ x: new Date(2019,6), y: 99 },
+					{ x: new Date(2019, 7), y: 163 },
+					{ x: new Date(2019, 8), y: 270 },
+					{ x: new Date(2019, 9), y: 525 },
+					{ x: new Date(2019, 10), y: 733 }
 				]
 			}]
 		}

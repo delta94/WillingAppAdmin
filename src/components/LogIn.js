@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import "../Dashboard.css";
 export default class LogIn extends Component {
-    state={
+    constructor(props) {
+        super(props);
+
+    this.state={
         UserName:'',
         password:'',
        
     }
-
+    }
     validUser=(element)=>{
         this.setState({UserName:element.target.value});
     }
@@ -16,8 +19,11 @@ export default class LogIn extends Component {
         this.setState({password:element1.target.value})
     }
 
+   savedName=()=>{
+    //    this.props.add (this.state.UserName);
+       console.log (this.state.UserName)
+   }
 
-   
 
 
     render() {
@@ -31,15 +37,15 @@ export default class LogIn extends Component {
                </div>  
          
                <br/>  
-               <h6>User name:</h6>
-               <input type ='text' onChange={this.validUser} style={{backgroundColor:this.state.backgroundColorUserName ,border:"2px solid blue "}} placeholder="title" placeholder="UserName"></input>
+               <h6 style={{color:"white"}}>User name:</h6>
+               <input type ='text' onChange={this.validUser}   placeholder="UserName"></input>
                <br/>
-               <h6>password:</h6>
-               <input type ='password' onChange={this.validPass} style={{backgroundColor:this.state.backgroundColorPassword ,border:"2px solid blue "}} placeholder='password'></input>
+               <h6 style={{color:"white"}}>password:</h6>
+               <input type ='password' onChange={this.validPass}  placeholder='password'></input>
                <br/>
               
                <Link  path to="/dashboard">
-                <button  style={{textAlign:"center" ,border:"2px solid white " ,borderRadius: "50%"}}>submit</button>
+                <button   style={{textAlign:"center" ,border:"2px solid white " ,borderRadius: "50%"}} onClick={this.savedName}>submit</button>
               </Link>
 
                {/* <Link to ='/dashboard'>

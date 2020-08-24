@@ -16,6 +16,7 @@ export default class Reports extends Component {
       users: Users,
       status: false,
       note: false,
+      backgroundColor:"grey"
     };
   }
   statusChange = () => {
@@ -26,7 +27,10 @@ export default class Reports extends Component {
     }
   };
 
-  handleClose = () => this.setState({ status: false });
+  handleClose = () =>{
+     this.setState({ status: false })
+     
+    };
   handleShow = () => this.setState({ status: true });
 
   noteChange = () => {
