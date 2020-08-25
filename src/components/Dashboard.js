@@ -15,41 +15,7 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 export default class Dashboard extends React.Component {
   // data = [
   //   {
-  //     quarter: "january",
-  //     spending: 450,
-  //   },
-  //   {
-  //     quarter: "February",
-  //     spending: 560,
-  //   },
-  //   {
-  //     quarter: "march",
-  //     spending: 600,
-  //   },
-  //   {
-  //     quarter: "april",
-  //     spending: 700,
-  //   },
-  //   {
-  //     quarter: "may",
-  //     spending: 450,
-  //   },
-  //   {
-  //     quarter: "june",
-  //     spending: 590,
-  //   },
-  //   {
-  //     quarter: "july",
-  //     spending: 420,
-  //   },
-  //   {
-  //     quarter: "auguest",
-  //     spending: 211,
-  //   },
-  //   {
-  //     quarter: "september",
-  //     spending: 399,
-  //   },
+  //     
   //   {
   //     quarter: "october",
   //     spending: 877,

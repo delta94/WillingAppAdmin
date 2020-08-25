@@ -16,9 +16,22 @@ export default class Reports extends Component {
       users: Users,
       status: false,
       note: false,
-      backgroundColor:"grey"
+      flag:false,
+      button: true,
+      
     };
   }
+  show=()=>{
+       
+
+    if(this.state.flag===true){
+        return(
+             <div>
+               works
+             </div>
+            )
+        }
+            }
   statusChange = () => {
     if (this.state.status) {
       this.setState({ status: false });
@@ -29,7 +42,7 @@ export default class Reports extends Component {
 
   handleClose = () =>{
      this.setState({ status: false })
-     
+
     };
   handleShow = () => this.setState({ status: true });
 
@@ -42,7 +55,9 @@ export default class Reports extends Component {
   };
 
   handleNoteClose = () => this.setState({ note: false });
-  handleNoteShow = () => this.setState({ note: true });
+  handleNoteShow = () =>{this.setState({ note: true })
+  // this.setState({button: false})
+};
 
   render() {
     return (
@@ -166,7 +181,8 @@ export default class Reports extends Component {
                         type="submit"
                         value="delete"
                       />
-                      <ReactLogo style={{ marginTop: 0 }} />
+                      <ReactLogo style={{ marginTop: 0 }}onClick={()=>{this.setState({flag: !this.state.flag})}} />
+                      {this.show()}
                     </td>
                   </tr>
                 );

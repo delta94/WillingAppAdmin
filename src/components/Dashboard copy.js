@@ -22,8 +22,8 @@ class SplineAreaChart extends Component {
         // legendText: "monthes of the year",
         color: "#4d34c1",
 				dataPoints: [
-					{ x: new Date(2019, 1), y: 30 },
-					{ x: new Date(2019, 2), y: 45 },
+					{ x: new Date(2019, 1,1), y: 30 },
+					{ x: new Date(2019, 2,1), y: 45 },
 					{ x: new Date(2019,3), y: 76 },
 					{ x: new Date(2019, 4), y: 79 },
 					{ x: new Date(2019, 5), y: 81 },
