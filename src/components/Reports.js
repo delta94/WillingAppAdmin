@@ -17,7 +17,7 @@ export default class Reports extends Component {
       status: false,
       note: false,
       flag:false,
-      button: true,
+      bgColor:"#de4b4c",
       
     };
   }
@@ -58,7 +58,11 @@ export default class Reports extends Component {
   handleNoteShow = () =>{this.setState({ note: true })
   // this.setState({button: false})
 };
-
+handleClick=()=> {
+  this.setState({
+    bgColor: 'grey' })
+    this.setState({ status: false })
+  }
   render() {
     return (
       <div>
@@ -81,7 +85,7 @@ export default class Reports extends Component {
             >
               Cancel
             </button>
-            <button className="modalBTN" onClick={() => this.handleClose()}>
+            <button className="modalBTN" onClick={() => this.handleClick()}>
               Delete
             </button>
           </Modal.Footer>
@@ -120,6 +124,7 @@ export default class Reports extends Component {
             </button>
           </Modal.Footer>
         </Modal>
+        
 
         <div style={{ marginTop: 30 }} className="container">
           <table className="table table-striped">
@@ -176,6 +181,7 @@ export default class Reports extends Component {
                     <td className="sendButton">
                       <input id="lightButton" type="submit" value="confirm" />
                       <input
+                      style={{backgroundColor:this.state.bgColor}}
                         id="redButton"
                         onClick={this.handleShow}
                         type="submit"
