@@ -19,6 +19,7 @@ export default class Reports extends Component {
       note: false,
       flag: false,
       button: true,
+
     };
   }
   show = () => {
@@ -75,7 +76,7 @@ export default class Reports extends Component {
             >
               Cancel
             </button>
-            <button className="modalBTN" onClick={() => this.handleClose()}>
+            <button className="modalBTN" onClick={() => this.handleClick()}>
               Delete
             </button>
           </Modal.Footer>
@@ -114,6 +115,7 @@ export default class Reports extends Component {
             </button>
           </Modal.Footer>
         </Modal>
+        
 
         <div style={{ marginTop: 30 }} className="container">
           <table className="table table-striped">
