@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
-import Navbar from './Navbar';
+import Navbar from "./Navbar";
 import Users from "../users.json";
 import { ReactComponent as ReactLogo } from "../Dots.svg";
 import UsersReports from "../Reports.json";
 import Dropdown from "react-bootstrap/Dropdown";
+import SingleReport from "./SingleReport";
 import "../Reports.css";
 
 export default class Reports extends Component {
@@ -16,22 +17,15 @@ export default class Reports extends Component {
       users: Users,
       status: false,
       note: false,
-      flag:false,
+      flag: false,
       button: true,
-      
     };
   }
-  show=()=>{
-       
-
-    if(this.state.flag===true){
-        return(
-             <div>
-               works
-             </div>
-            )
-        }
-            }
+  show = () => {
+    if (this.state.flag === true) {
+      return <div>works</div>;
+    }
+  };
   statusChange = () => {
     if (this.state.status) {
       this.setState({ status: false });
@@ -40,10 +34,9 @@ export default class Reports extends Component {
     }
   };
 
-  handleClose = () =>{
-     this.setState({ status: false })
-
-    };
+  handleClose = () => {
+    this.setState({ status: false });
+  };
   handleShow = () => this.setState({ status: true });
 
   noteChange = () => {
@@ -55,14 +48,15 @@ export default class Reports extends Component {
   };
 
   handleNoteClose = () => this.setState({ note: false });
-  handleNoteShow = () =>{this.setState({ note: true })
-  // this.setState({button: false})
-};
+  handleNoteShow = () => {
+    this.setState({ note: true });
+    // this.setState({button: false})
+  };
 
   render() {
     return (
       <div>
-                <Navbar />
+        <Navbar />
         {/* modal section */}
         <Modal show={this.state.status} onHide={() => this.handleClose()}>
           <Modal.Header closeButton>
@@ -153,39 +147,15 @@ export default class Reports extends Component {
             </thead>
             <tbody>
               {UsersReports.map((element) => {
-                let color = "#5ac25a";
-                if (element.status === "close") {
-                  color = "red";
-                } else if (element.status === "open") {
-                  color = "#5ac25a";
-                } else {
-                  color = "orange";
-                }
-                return (
-                  <tr onClick={this.handleNoteShow}>
-                    <td>{element.descrirtion}</td>
-                    <td>{element.type}</td>
-                    <td style={{ textAlign: "left" }}>
-                      <span
-                        style={{ backgroundColor: `${color}` }}
-                        className="dot"
-                      ></span>
-                      {element.status}
-                    </td>
-                    <td>{element.date}</td>
-                    <td className="sendButton">
-                      <input id="lightButton" type="submit" value="confirm" />
-                      <input
-                        id="redButton"
-                        onClick={this.handleShow}
-                        type="submit"
-                        value="delete"
-                      />
-                      <ReactLogo style={{ marginTop: 0 }}onClick={()=>{this.setState({flag: !this.state.flag})}} />
-                      {this.show()}
-                    </td>
-                  </tr>
-                );
+                // let color = "#5ac25a";
+                // if (element.status === "close") {
+                //   color = "red";
+                // } else if (element.status === "open") {
+                //   color = "#5ac25a";
+                // } else {
+                //   color = "orange";
+                // }
+                return <SingleReport element={element} />;
               })}
             </tbody>
           </table>
