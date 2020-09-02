@@ -53,7 +53,7 @@ export default class Reports extends Component {
     this.setState({ note: true });
     // this.setState({button: false})
   };
-
+ 
   render() {
     return (
       <div>

@@ -6,7 +6,7 @@
 
 }
 
-#redButton {
+#ButtonTrue {
     border-radius: 5px;
     background-color: #de4b4c;
     color: white;
@@ -14,7 +14,7 @@
     height: 35px;
 }
 
-#redButtonFalse {
+#ButtonFalse {
     border-radius: 5px;
     background-color: grey;
     color: black;

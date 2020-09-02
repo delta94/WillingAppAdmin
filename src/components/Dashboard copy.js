@@ -4,6 +4,7 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
  
 class SplineAreaChart extends Component {
 	render() {
+		
 		const options = {
 			animationEnabled: true,
 			title: {

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { ReactComponent as ReactLogo } from "../Dots.svg";
 import "../Reports.css";
 import Modal from "react-bootstrap/Modal";
+import { Alert } from "react-bootstrap";
 
 export default class SingleReport extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ export default class SingleReport extends Component {
       flag: false,
       status: false,
       disabledButton: false,
+      bgColor:"#de4b4c",
     };
   }
 
@@ -23,7 +25,14 @@ export default class SingleReport extends Component {
 
   show = () => {
     if (this.state.flag === true) {
-      return <div>works</div>;
+      return <div>
+      <Alert>
+          
+          <button>send notiffication to the reporter</button>
+          <button>send notiffication to the reporter</button>
+          <button>send notiffication to the reporter</button>
+      </Alert>
+      </div>;
     }
   };
 
@@ -37,7 +46,12 @@ export default class SingleReport extends Component {
   ChangeButtonFunction = () => {
     this.setState({ disabledButton: true });
   };
-
+  handleClick=()=> {
+    this.setState({
+      bgColor: 'grey' })
+      this.handleClose();
+      
+    }
   render() {
     let color = "#5ac25a";
     if (this.props.element.status === "close") {
@@ -66,7 +80,7 @@ export default class SingleReport extends Component {
             >
               Cancel
             </button>
-            <button className="modalBTN" onClick={() => this.handleClose()}>
+            <button className="modalBTN" onClick={() => this.handleClick()}>
               Delete
             </button>
           </Modal.Footer>
@@ -120,7 +134,7 @@ export default class SingleReport extends Component {
             type="submit"
             value="confirm"
           />
-          <input
+          <input style={{background: this.state.bgColor}}
             id="redButton"
             onClick={this.handleShow}
             type="submit"
