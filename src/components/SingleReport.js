@@ -22,19 +22,25 @@ export default class SingleReport extends Component {
     this.setState({ note: true });
     // this.setState({button: false})
   };
-
+ flagOf=()=>{
+  this.setState({ flag: false });
+ }
   show = () => {
     if (this.state.flag === true) {
-      return <div>
-      <Alert>
-          
-          <button>send notiffication to the reporter</button>
-          <button>send notiffication to the reporter</button>
-          <button>send notiffication to the reporter</button>
-      </Alert>
-      </div>;
-    }
-  };
+      return (
+      <Alert  class="alert alert-danger" role="alert">
+      <div class="btn-group btn-group-sm"  role="group"></div>
+      <p>
+             <button class="btn btn-outline-secondary">Send notification to the reporter</button>
+             <button class="btn btn-outline-secondary">Send massage to the user</button>
+             <button class="btn btn-outline-warning">Block the user</button>
+      </p>
+      <div/>
+    </Alert>
+    );
+  }
+}
+     
 
   handleClose = () => {
     this.setState({ status: false });
@@ -48,10 +54,10 @@ export default class SingleReport extends Component {
   };
   handleClick=()=> {
     this.setState({
-      bgColor: 'grey' })
+      bgColor: 'grey' });
       this.handleClose();
-      
     }
+
   render() {
     let color = "#5ac25a";
     if (this.props.element.status === "close") {

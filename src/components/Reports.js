@@ -22,11 +22,11 @@ export default class Reports extends Component {
 
     };
   }
-  show = () => {
-    if (this.state.flag === true) {
-      return <div>works</div>;
-    }
-  };
+  // show = () => {
+  //   if (this.state.flag === true) {
+  //     return <div>works</div>;
+  //   }
+  // };
   statusChange = () => {
     if (this.state.status) {
       this.setState({ status: false });
