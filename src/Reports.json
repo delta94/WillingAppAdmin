@@ -1,25 +1,33 @@
 [{
-        "descrirtion": "in appropriate launguage",
+        "descrirtion": "Inappropriate launguage",
         "type": "null",
         "status": "open",
-        "date": "01/01/2019"
+        "date": "01/01/2019",
+        "nameOfReporter": "Dolev",
+        "Phonnumber": "0551234678"
     },
     {
         "descrirtion": "false post",
         "type": "null",
         "status": "close",
-        "date": "01/02/2019"
+        "date": "01/02/2019",
+        "nameOfReporter": "Ofir",
+        "Phonnumber": "0551234678"
     },
     {
         "descrirtion": "not relevant anymore",
         "type": "null",
         "status": "deleted",
-        "date": "01/03/2019"
+        "date": "01/03/2019",
+        "nameOfReporter": "Robers",
+        "Phonnumber": "0551234678"
     },
     {
         "descrirtion": "not readable(jibrish)",
         "type": "null",
         "status": "open",
-        "date": "01/04/2019"
+        "date": "01/04/2019",
+        "nameOfReporter": "Einat",
+        "Phonnumber": "0551234678"
     }
 ]

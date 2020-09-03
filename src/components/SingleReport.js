@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { ReactComponent as ReactLogo } from "../Dots.svg";
 import "../Reports.css";
 import Modal from "react-bootstrap/Modal";
+import { Alert } from "react-bootstrap";
 
 export default class SingleReport extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ export default class SingleReport extends Component {
       flag: false,
       status: false,
       disabledButton: false,
+      closeAlert: false,
     };
   }
 
@@ -20,11 +22,33 @@ export default class SingleReport extends Component {
     this.setState({ note: true });
     // this.setState({button: false})
   };
-
+  flagOf = () => {
+    this.setState({ flag: false });
+  };
   show = () => {
     if (this.state.flag === true) {
-      return <div>works</div>;
+      return (
+        <Alert
+          onHide={() => this.CloseAlert()}
+          style={{ position: "absolute" }}
+          className="floatingDiv"
+        >
+          <div className="floatingList" role="group">
+            <ul className="reportOptionStyle">
+              <option className="optionStyle">
+                Send notification to the reporter
+              </option>
+              <option className="optionStyle">Send massage to the user</option>
+              <option className="optionStyle">Block the user</option>
+            </ul>
+          </div>
+        </Alert>
+      );
     }
+  };
+
+  CloseAlert = () => {
+    this.setState({ closeAlert: true });
   };
 
   handleClose = () => {
@@ -37,8 +61,13 @@ export default class SingleReport extends Component {
   ChangeButtonFunction = () => {
     this.setState({ disabledButton: true });
   };
+  handleClick = () => {
+    document.getElementById("redButton").style.backgroundColor = "grey";
+    this.handleClose();
+  };
 
   render() {
+    console.log(this.props.element);
     let color = "#5ac25a";
     if (this.props.element.status === "close") {
       color = "red";
@@ -66,7 +95,7 @@ export default class SingleReport extends Component {
             >
               Cancel
             </button>
-            <button className="modalBTN" onClick={() => this.handleClose()}>
+            <button className="modalBTN" onClick={() => this.handleClick()}>
               Delete
             </button>
           </Modal.Footer>
@@ -78,14 +107,15 @@ export default class SingleReport extends Component {
           </Modal.Header>
           <Modal.Body>
             <h6>Report description:</h6>
-            <p>Report description </p>
+            <p>{this.props.element.descrirtion} </p>
             <h6>Reson</h6>
-            <p> reson description</p>
+            <p> {this.props.element.type}</p>
             <h6>Reporters' Details</h6>
             <p>
-              name
+              {this.props.element.nameOfReporter}
               <br />
-              phone number{" "}
+              phone number:
+              {this.props.element.Phonnumber}
             </p>
             <h6>send notification to user name</h6>
             <textarea
@@ -121,6 +151,7 @@ export default class SingleReport extends Component {
             value="confirm"
           />
           <input
+            // style={{ background: this.state.bgColor }}
             id="redButton"
             onClick={this.handleShow}
             type="submit"
