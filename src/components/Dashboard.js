@@ -5,31 +5,13 @@ import { Link } from "react-router-dom";
 import data from "../Data.json";
 import Users from "../users.json";
 import { AgChartsReact } from "ag-charts-react";
-import CanvasJSReact from '../assets/canvasjs.react';
-import Navbar from './Navbar';
-import Graph from './Dashboard copy';
+import CanvasJSReact from "../assets/canvasjs.react";
+import Navbar from "./Navbar";
+import Graph from "./Dashboard copy";
 import axios from "axios";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
- 
 
 export default class Dashboard extends React.Component {
-  // data = [
-  //   {
-  //     
-  //   {
-  //     quarter: "october",
-  //     spending: 877,
-  //   },
-  //   {
-  //     quarter: "november",
-  //     spending: 333,
-  //   },
-  //   {
-  //     quarter: "december",
-  //     spending: 459,
-  //   },
-  // ];
-  
   constructor(props) {
     var today = new Date(),
       currentDate =
@@ -162,10 +144,9 @@ export default class Dashboard extends React.Component {
   };
 
   render() {
-    
     return (
       <div id="dates" style={{ textAlign: "right" }}>
-              <Navbar />
+        <Navbar />
         <div />
         <div id="datesANDduser" className="row">
           <div className="col-2">
@@ -218,16 +199,7 @@ export default class Dashboard extends React.Component {
         <br />
         <br />
         <div style={{ textAlign: "left" }}>
-          {/* <AgChartsReact
-            style={{
-              backgroundColor: "white",
-              color: "#4d34c1",
-              width: "700px",
-            }}
-            id="chart"
-            options={this.state.options}
-          /> */}
-          <Graph/>
+          <Graph />
           <p>
             <span>
               <img
