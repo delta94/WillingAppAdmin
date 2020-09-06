@@ -198,8 +198,9 @@ export default class Dashboard extends React.Component {
         </div>
         <br />
         <br />
-        <div style={{ textAlign: "left" }}>
-          <Graph />
+
+        <Graph />
+        <div style={{ textAlign: "left", marginTop: 30 }}>
           <p>
             <span>
               <img
