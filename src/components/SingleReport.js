@@ -26,7 +26,7 @@ export default class SingleReport extends Component {
     this.setState({ flag: false });
   };
   show = () => {
-    if (this.state.flag) {
+    if (this.state.flag === true) {
       return (
         <Alert
           onHide={() => this.CloseAlert()}
@@ -48,9 +48,7 @@ export default class SingleReport extends Component {
   };
 
   CloseAlert = () => {
-    if (this.state.flag) {
-      this.setState({ flag: false });
-    }
+    this.setState({ closeAlert: true });
   };
 
   handleClose = () => {
