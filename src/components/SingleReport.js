@@ -28,19 +28,23 @@ export default class SingleReport extends Component {
   show = () => {
     if (this.state.flag === true) {
       return (
-        <Alert
+        <Alert 
           onHide={() => this.CloseAlert()}
           style={{ position: "absolute" }}
           className="floatingDiv"
         >
-          <div className="floatingList" role="group">
+          <div class="alert alert-danger" role="alert">
             <ul className="reportOptionStyle">
               <option className="optionStyle">
                 Send notification to the reporter
               </option>
               <option className="optionStyle">Send massage to the user</option>
               <option className="optionStyle">Block the user</option>
+               <button style={{boxSizing:"8px"}} class="btn btn-xs btn-danger">
+              X                   
+            </button>
             </ul>
+           
           </div>
         </Alert>
       );

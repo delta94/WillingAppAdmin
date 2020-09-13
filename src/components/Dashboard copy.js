@@ -68,43 +68,50 @@ const datesToGraph = `${tempDate.getFullYear()}-${
 
 const data = [
   {
-    name: "Aug 19",
+    name: "August 19",
     uv: 30,
   },
   {
-    name: "Page B",
+    name: "September 19",
     uv: 45,
   },
   {
-    name: "Page C",
+    name: "October 19",
     uv: 76,
   },
   {
-    name: "Page D",
+    name: "November 19",
     uv: 79,
   },
   {
-    name: "Page E",
+    name: "December 19",
     uv: 81,
   },
   {
-    name: "Page F",
+    name: "January 20",
     uv: 99,
   },
   {
-    name: "Page G",
+    name: "February 20",
     uv: 163,
   },
   {
-    name: "Page G",
+    name: "March 20",
     uv: 270,
   },
   {
-    name: "Page G",
+    name: "April 20",
     uv: 525,
   },
   {
-    name: "Page G",
+    name: "May 20",
+    uv: 733,
+  },
+  {
+    name: "June 20",
+    uv: 733,
+  },{
+    name: "July 20",
     uv: 733,
   },
 ];
@@ -126,11 +133,7 @@ export default class Example extends PureComponent {
           bottom: 0,
         }}
       >
-<<<<<<< HEAD
-        <CartesianGrid strokeDasharray="0 0" />
-=======
         <CartesianGrid stroke="white" strokeDasharray="1 1" />
->>>>>>> 3549da6e952e3c0bd69ff9d469b10e8949ebd8c2
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
