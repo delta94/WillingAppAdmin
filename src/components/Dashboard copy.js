@@ -123,7 +123,7 @@ export default class Example extends PureComponent {
     console.log(new Date(2019, 1, 1));
     return (
       <AreaChart
-        width={1300}
+        width={1600}
         height={400}
         data={data}
         margin={{
@@ -133,9 +133,9 @@ export default class Example extends PureComponent {
           bottom: 0,
         }}
       >
-        <CartesianGrid stroke="white" strokeDasharray="1 1" />
+        {/* <CartesianGrid stroke="white" strokeDasharray="1 1" /> */}
         <XAxis dataKey="name" />
-        <YAxis />
+        {/* <YAxis /> */}
         <Tooltip />
         <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#4d34c1" />
       </AreaChart>

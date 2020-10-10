@@ -37,10 +37,10 @@ export default class LogIn extends Component {
                </div>  
          
                <br/>  
-               <h6 style={{color:"white"}}>User name:</h6>
-               <input type ='text' onChange={this.validUser}   placeholder="UserName"></input>
+               <h6 style={{color:"white"}}>Email:</h6>
+               <input type ='text' onChange={this.validUser}   placeholder="Email"></input>
                <br/>
-               <h6 style={{color:"white"}}>password:</h6>
+               <h6 style={{color:"white"}}>Password:</h6>
                <input type ='password' onChange={this.validPass}  placeholder='password'></input>
                <br/>
               

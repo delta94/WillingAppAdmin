@@ -36,6 +36,7 @@ export default class Dashboard extends React.Component {
       topUsers: [],
       DateRange: null,
       registersData: "",
+      icons:"",
     };
   }
 
@@ -120,9 +121,33 @@ export default class Dashboard extends React.Component {
         },
       });
       // alert('works')
+
+      
       let data = res.data;
       console.log(data);
       this.setState({ registersData: data });
+    } catch (err) {
+      console.log(`😱 Axios getInformation failed: ${err}`);
+    }
+  };
+  saveIcones = async (e) => {
+    try {
+     
+      let res = await axios({
+        url: `https://cors-anywhere.herokuapp.com/http://ec2-52-91-26-189.compute-1.amazonaws.com:8080/X98ActivitieS/_summary`,
+        // adress to cors https://cors-anywhere.herokuapp.com/
+        method: "get",
+        headers: {
+          "content-type": "application/json",
+          "X-Requested-With": "XMLhttpRequest",
+        },
+      });
+      // alert('works')
+
+      
+      let data = res.data;
+      console.log(data);
+      this.setState({ icons: data });
     } catch (err) {
       console.log(`😱 Axios getInformation failed: ${err}`);
     }
@@ -145,23 +170,28 @@ export default class Dashboard extends React.Component {
 
   render() {
     return (
-      <div id="dates" style={{ textAlign: "right" }}>
+      <div>
         <Navbar />
-        <div />
+      
+     <div id="dates" style={{ textAlign: "right" }}>
+        
+         <div />
         <div id="datesANDduser" className="row">
           <div className="col-2">
             <p className="usersInfo">
               <span id="dataDate1">
-                {this.state.registersData.registerCount}
+                {/* {this.state.registersData.registerCount} */}
+                {this.state.icons.totalAccounts}
               </span>
               <br />
-              Total active accounts
+              total Accounts
             </p>
           </div>
           <div className="col-2">
             <p className="usersInfo">
               <span id="dataDate2">
-                {this.state.registersData.uniqueUsersCount}
+                {/* {this.state.registersData.uniqueUsersCount} */}
+                {this.state.icons.totalActiveUsers}
               </span>
               <br />
               Total active users
@@ -170,10 +200,21 @@ export default class Dashboard extends React.Component {
           <div className="col-2">
             <p className="usersInfo">
               <span id="dataDate3">
-                {this.state.registersData.addRequestCount}
+                {/* {this.state.registersData.addRequestCount} */}
+                {this.state.icons.totalActiveRequesterLastMonth}
               </span>
               <br />
-              Total requests
+              total Active Requester Last Month
+            </p>
+          </div>
+          <div className="col-2">
+            <p className="usersInfo">
+              <span id="dataDate3">
+                {/* {this.state.registersData.addRequestCount} */}
+                {this.state.icons.totalActiveRequests}
+              </span>
+              <br />
+              total Active Requests
             </p>
           </div>
 
@@ -199,7 +240,9 @@ export default class Dashboard extends React.Component {
         <br />
         <br />
 
-        <Graph />
+        <Graph 
+         onApply={() => this.saveIcones()}
+        />
         <div style={{ textAlign: "left", marginTop: 30 }}>
           <p>
             <span>
@@ -207,7 +250,7 @@ export default class Dashboard extends React.Component {
                 src={"./emergency.svg"}
                 style={{ width: "80px", height: "20px" }}
               ></img>{" "}
-              {data.requests.emergency}
+              {this.state.icons.totalRequestsByCategoriesMap}
             </span>
             <span>
               <img
@@ -267,6 +310,7 @@ export default class Dashboard extends React.Component {
             </span>
           </p>
         </div>
+      </div>
       </div>
     );
   }
