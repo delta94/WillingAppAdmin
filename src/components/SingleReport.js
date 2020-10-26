@@ -3,6 +3,8 @@ import { ReactComponent as ReactLogo } from "../Dots.svg";
 import "../Reports.css";
 import Modal from "react-bootstrap/Modal";
 import { Alert } from "react-bootstrap";
+import Backdrop from "./UI/Backdrop";
+
 
 export default class SingleReport extends Component {
   constructor(props) {
@@ -17,7 +19,10 @@ export default class SingleReport extends Component {
     };
   }
 
+
+
   handleNoteClose = () => this.setState({ note: false });
+
   handleNoteShow = () => {
     this.setState({ note: true });
     // this.setState({button: false})
@@ -25,28 +30,31 @@ export default class SingleReport extends Component {
   flagOf = () => {
     this.setState({ flag: false });
   };
+
   show = () => {
     if (this.state.flag === true) {
+      
       return (
+        <div>
+          <Backdrop click={this.flagOf}/>
         <Alert 
-          onHide={() => this.CloseAlert()}
-          style={{ position: "absolute" }}
+         // onHide={() => this.CloseAlert()}
+          style={{ position: "absolute", zIndex:'200' }}
           className="floatingDiv"
         >
-          <div class="alert alert-danger" role="alert">
+          <div className="alert alert-light border border-dark" role="alert">
             <ul className="reportOptionStyle">
-              <option className="optionStyle">
-                Send notification to the reporter
-              </option>
+              <option className="optionStyle">Send notification to the reporter</option>
               <option className="optionStyle">Send massage to the user</option>
               <option className="optionStyle">Block the user</option>
-               <button style={{boxSizing:"8px"}} class="btn btn-xs btn-danger">
+               {/* <button style={{boxSizing:"8px"}} class="btn btn-xs btn-danger">
               X                   
-            </button>
+            </button> */}
             </ul>
            
           </div>
         </Alert>
+        </div>
       );
     }
   };
@@ -71,8 +79,20 @@ export default class SingleReport extends Component {
   };
 
   render() {
-    console.log(this.props.element);
+    //console.log(this.props.closeOptions);
+    
+   let stat = this.props.element.status 
+   let newStat = stat.charAt(0).toUpperCase() + stat.slice(1)
+
+  let newDate =  new Date(parseInt(this.props.element.date))
+  
+   
+
     let color = "#5ac25a";
+
+    // if (this.props.closeOptions) {
+    //   this.setState({ flag: false });
+    // }
     if (this.props.element.status === "close") {
       color = "red";
     } else if (this.props.element.status === "open") {
@@ -81,6 +101,7 @@ export default class SingleReport extends Component {
       color = "orange";
     }
     return (
+      
       <tr>
         <Modal show={this.state.status} onHide={() => this.handleClose()}>
           <Modal.Header closeButton>
@@ -140,31 +161,33 @@ export default class SingleReport extends Component {
           </Modal.Footer>
         </Modal>
         <td onClick={this.handleNoteShow}>{this.props.element.descrirtion}</td>
-        <td onClick={this.handleNoteShow}>{this.props.element.type}</td>
-        <td onClick={this.handleNoteShow} style={{ textAlign: "left" }}>
-          <span style={{ backgroundColor: `${color}` }} className="dot"></span>
-          {this.props.element.status}
+        {/* <td onClick={this.handleNoteShow}>{this.props.element.type}</td> */}
+        <td onClick={this.handleNoteShow} >
+          <span style={{ backgroundColor: `${color}` }} className="dot"></span>{" "}
+          {newStat}
         </td>
-        <td onClick={this.handleNoteShow}>{this.props.element.date}</td>
-        <td className="sendButton">
+        
+        <td onClick={this.handleNoteShow}>{newDate.toLocaleString()}{" "}</td>
+        <td className="sendButton" style={{ textAlign: "right" }} >
           <input
             disabled={this.state.disabledButton}
             onClick={this.ChangeButtonFunction}
             id="lightButton"
             type="submit"
-            value="confirm"
+            value="Confirm"
           />
           <input
             // style={{ background: this.state.bgColor }}
             id="redButton"
             onClick={this.handleShow}
             type="submit"
-            value="delete"
+            value="Delete"
           />
           <ReactLogo
-            style={{ marginTop: 0 }}
+            style={{ marginTop: 0 ,cursor: 'pointer' }}
             onClick={() => {
               this.setState({ flag: !this.state.flag });
+              
             }}
           />
           {this.show()}
