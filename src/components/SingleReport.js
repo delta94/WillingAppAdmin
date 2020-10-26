@@ -44,9 +44,9 @@ export default class SingleReport extends Component {
         >
           <div className="alert alert-light border border-dark" role="alert">
             <ul className="reportOptionStyle">
-              <option className="optionStyle">Send notification to the reporter</option>
-              <option className="optionStyle">Send massage to the user</option>
-              <option className="optionStyle">Block the user</option>
+              <li className="optionStyle">Send message to the Reporter</li>
+              <li className="optionStyle">Send massage to the Publisher</li>
+              <li className="optionStyle">Block Publisher</li>
                {/* <button style={{boxSizing:"8px"}} class="btn btn-xs btn-danger">
               X                   
             </button> */}
@@ -74,8 +74,8 @@ export default class SingleReport extends Component {
     this.setState({ disabledButton: true });
   };
   handleClick = () => {
-    document.getElementById("redButton").style.backgroundColor = "grey";
-    this.handleClose();
+    // document.getElementById("redButton").style.backgroundColor = "grey";
+     this.handleClose();
   };
 
   render() {

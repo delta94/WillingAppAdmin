@@ -84,7 +84,7 @@ export default class Reports extends Component {
                 </th> */}
                
                 <th scope="col">
-                  <i className="TableHeadStyle">date</i>
+                  <i className="TableHeadStyle">Date</i>
                 </th>
                 {/* <th scope="col">
                   <i className="TableHeadStyle"></i>
@@ -93,7 +93,7 @@ export default class Reports extends Component {
                   <i className="TableHeadStyle"></i>
                 </th> */}
                 <th className="sendBurronStyle"  scope="col">
-                  block
+                  
                 </th>
               </tr>
             </thead>
