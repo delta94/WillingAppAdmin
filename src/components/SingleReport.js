@@ -14,7 +14,8 @@ export default class SingleReport extends Component {
       note: false,
       flag: false,
       status: false,
-      disabledButton: false,
+      disabledButtonConfirm: false,
+      disabledButtonDelete: false,
       closeAlert: false,
     };
   }
@@ -44,9 +45,11 @@ export default class SingleReport extends Component {
         >
           <div className="alert alert-light border border-dark" role="alert">
             <ul className="reportOptionStyle">
-              <li className="optionStyle">Send message to the Reporter</li>
-              <li className="optionStyle">Send massage to the Publisher</li>
-              <li className="optionStyle">Block Publisher</li>
+              <option className="optionStyle">Send message to the Reporter</option>
+              <br/>
+              <option className="optionStyle">Send massage to the Publisher</option>
+              <br/>
+              <option className="optionStyle">Block Publisher</option>
                {/* <button style={{boxSizing:"8px"}} class="btn btn-xs btn-danger">
               X                   
             </button> */}
@@ -64,17 +67,25 @@ export default class SingleReport extends Component {
   };
 
   handleClose = () => {
+    
     this.setState({ status: false });
+    
+    
+    
   };
   handleShow = () => {
     this.setState({ status: true });
   };
 
   ChangeButtonFunction = () => {
-    this.setState({ disabledButton: true });
+    this.setState({ disabledButtonConfirm: true });
+    document.getElementById("lightButton").style.cursor = "not-allowed";
+    document.getElementById("lightButton").style.backgroundColor = "lightgrey";
   };
+
   handleClick = () => {
-    // document.getElementById("redButton").style.backgroundColor = "grey";
+     document.getElementById("redButton").style.backgroundColor = "lightgrey";
+     document.getElementById("redButton").style.cursor = "not-allowed";
      this.handleClose();
   };
 
@@ -116,7 +127,11 @@ export default class SingleReport extends Component {
           <Modal.Footer>
             <button
               className="btn btn-secondary"
-              onClick={() => this.handleClose()}
+              onClick={() =>{
+                this.handleClose()
+                
+              } 
+              }
             >
               Cancel
             </button>
@@ -170,7 +185,7 @@ export default class SingleReport extends Component {
         <td onClick={this.handleNoteShow}>{newDate.toLocaleString()}{" "}</td>
         <td className="sendButton" style={{ textAlign: "right" }} >
           <input
-            disabled={this.state.disabledButton}
+            disabled={this.state.disabledButtonConfirm}
             onClick={this.ChangeButtonFunction}
             id="lightButton"
             type="submit"
@@ -178,6 +193,7 @@ export default class SingleReport extends Component {
           />
           <input
             // style={{ background: this.state.bgColor }}
+            disabled={this.state.disabledButtonDelete}
             id="redButton"
             onClick={this.handleShow}
             type="submit"
