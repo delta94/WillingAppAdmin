@@ -38,17 +38,17 @@ export default class SingleReport extends Component {
       return (
         <div>
           <Backdrop click={this.flagOf}/>
-        <Alert 
+        {/* <Alert 
          // onHide={() => this.CloseAlert()}
           style={{ position: "absolute", zIndex:'200' }}
           className="floatingDiv"
-        >
-          <div className="alert alert-light border border-dark" role="alert">
+        > */}
+          <div className="info-box"  >
             <ul className="reportOptionStyle">
               <option className="optionStyle">Send message to the Reporter</option>
-              <br/>
-              <option className="optionStyle">Send massage to the Publisher</option>
-              <br/>
+              
+              <option className="optionStyle">Send message to the Publisher</option>
+              
               <option className="optionStyle">Block Publisher</option>
                {/* <button style={{boxSizing:"8px"}} class="btn btn-xs btn-danger">
               X                   
@@ -56,7 +56,7 @@ export default class SingleReport extends Component {
             </ul>
            
           </div>
-        </Alert>
+        {/* </Alert> */}
         </div>
       );
     }
@@ -79,18 +79,18 @@ export default class SingleReport extends Component {
 
   ChangeButtonFunction = () => {
     this.setState({ disabledButtonConfirm: true });
-    document.getElementById("lightButton").style.cursor = "not-allowed";
-    document.getElementById("lightButton").style.backgroundColor = "lightgrey";
+    
   };
 
   handleClick = () => {
-     document.getElementById("redButton").style.backgroundColor = "lightgrey";
-     document.getElementById("redButton").style.cursor = "not-allowed";
+    this.setState({ disabledButtonDelete: true });
+  
      this.handleClose();
   };
 
   render() {
     //console.log(this.props.closeOptions);
+    console.log(this.state.disabledButtonConfirm);
     
    let stat = this.props.element.status 
    let newStat = stat.charAt(0).toUpperCase() + stat.slice(1)
@@ -186,6 +186,10 @@ export default class SingleReport extends Component {
         <td className="sendButton" style={{ textAlign: "right" }} >
           <input
             disabled={this.state.disabledButtonConfirm}
+            style={{
+              backgroundColor: this.state.disabledButtonConfirm && '#d3d3d3',
+              cursor: this.state.disabledButtonConfirm && 'not-allowed'
+              }}
             onClick={this.ChangeButtonFunction}
             id="lightButton"
             type="submit"
@@ -194,6 +198,10 @@ export default class SingleReport extends Component {
           <input
             // style={{ background: this.state.bgColor }}
             disabled={this.state.disabledButtonDelete}
+            style={{
+              backgroundColor: this.state.disabledButtonDelete && '#d3d3d3',
+              cursor: this.state.disabledButtonDelete && 'not-allowed'
+              }}
             id="redButton"
             onClick={this.handleShow}
             type="submit"
