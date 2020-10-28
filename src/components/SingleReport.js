@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { ReactComponent as ReactLogo } from "../Dots.svg";
 import "../Reports.css";
 import Modal from "react-bootstrap/Modal";
-import { Alert } from "react-bootstrap";
+
 import Backdrop from "./UI/Backdrop";
 
 
@@ -17,7 +17,9 @@ export default class SingleReport extends Component {
       disabledButtonConfirm: false,
       disabledButtonDelete: false,
       closeAlert: false,
+      element: this.props.element
     };
+    
   }
 
 
@@ -62,6 +64,8 @@ export default class SingleReport extends Component {
     }
   };
 
+
+
   CloseAlert = () => {
     this.setState({ closeAlert: true });
   };
@@ -79,20 +83,41 @@ export default class SingleReport extends Component {
 
   ChangeButtonFunction = () => {
     this.setState({ disabledButtonConfirm: true });
+    this.setState(prevState => ({
+      element: {                   
+          ...prevState.element,    
+          status: 'Closed'       
+      }
+  }))
     
   };
 
   handleClick = () => {
+    let element = { ...this.state.element };
+    
     this.setState({ disabledButtonDelete: true });
+    this.setState({ disabledButtonConfirm: true });
+    this.setState(prevState => ({
+      element: {                   
+          ...prevState.element,    
+          status: 'Deleted'       
+      }
+  }))
+
+    
   
      this.handleClose();
   };
 
   render() {
     //console.log(this.props.closeOptions);
-    console.log(this.state.disabledButtonConfirm);
+    // console.log(this.state.disabledButtonConfirm);
+  //  console.log( 'The State', this.state);
+  //  console.log('The Element', this.state.element); 
     
-   let stat = this.props.element.status 
+   
+
+   let stat = this.state.element.status 
    let newStat = stat.charAt(0).toUpperCase() + stat.slice(1)
 
   let newDate =  new Date(parseInt(this.props.element.date))
@@ -104,12 +129,20 @@ export default class SingleReport extends Component {
     // if (this.props.closeOptions) {
     //   this.setState({ flag: false });
     // }
-    if (this.props.element.status === "close") {
+    if (this.state.element.status === "closed") {
       color = "red";
-    } else if (this.props.element.status === "open") {
+      
+      
+    } else if (this.state.element.status === "open") {
       color = "#5ac25a";
     } else {
       color = "orange";
+    }
+
+    if (this.state.disabledButtonConfirm && this.state.disabledButtonDelete) {
+      color = 'orange'
+    }else if(this.state.disabledButtonConfirm == true && this.state.disabledButtonDelete == false){
+      color = 'red'
     }
     return (
       
@@ -124,9 +157,13 @@ export default class SingleReport extends Component {
                   className="textareaStyle"
                 /> */}
           {/* </Modal.Body> */}
-          <Modal.Footer>
+          <Modal.Body>
+            <h3>ID: {this.state.element.id}</h3>
+            <br/>
+           
             <button
-              className="btn btn-secondary"
+            className="modalBTN"
+              style={{border: 'none', padding:'0 20px',backgroundColor: 'grey', marginRight:'7px'}}
               onClick={() =>{
                 this.handleClose()
                 
@@ -135,10 +172,10 @@ export default class SingleReport extends Component {
             >
               Cancel
             </button>
-            <button className="modalBTN" onClick={() => this.handleClick()}>
+            <button className="modalBTN" style={{border: 'none',padding:'0 20px'}} onClick={() => this.handleClick()}>
               Delete
             </button>
-          </Modal.Footer>
+          </Modal.Body>
         </Modal>
         {/* modal section ends */}
         <Modal show={this.state.note} onHide={() => this.handleNoteClose()}>
@@ -147,15 +184,15 @@ export default class SingleReport extends Component {
           </Modal.Header>
           <Modal.Body>
             <h6>Report description:</h6>
-            <p>{this.props.element.descrirtion} </p>
+            <p>{this.state.element.descrirtion} </p>
             <h6>Reson</h6>
-            <p> {this.props.element.type}</p>
+            <p> {this.state.element.type}</p>
             <h6>Reporters' Details</h6>
             <p>
-              {this.props.element.nameOfReporter}
+              {this.state.element.nameOfReporter}
               <br />
               phone number:
-              {this.props.element.Phonnumber}
+              {this.state.element.Phonnumber}
             </p>
             <h6>send notification to user name</h6>
             <textarea
@@ -175,7 +212,8 @@ export default class SingleReport extends Component {
             </button>
           </Modal.Footer>
         </Modal>
-        <td onClick={this.handleNoteShow}>{this.props.element.descrirtion}</td>
+        <td>{this.state.element.id}</td>
+        <td onClick={this.handleNoteShow}>{this.state.element.description}</td>
         {/* <td onClick={this.handleNoteShow}>{this.props.element.type}</td> */}
         <td onClick={this.handleNoteShow} >
           <span style={{ backgroundColor: `${color}` }} className="dot"></span>{" "}
@@ -187,7 +225,8 @@ export default class SingleReport extends Component {
           <input
             disabled={this.state.disabledButtonConfirm}
             style={{
-              backgroundColor: this.state.disabledButtonConfirm && '#d3d3d3',
+              backgroundColor: (this.state.disabledButtonConfirm || 
+              this.state.element.status === 'deleted' || this.state.element.status === 'closed') &&  '#d3d3d3',
               cursor: this.state.disabledButtonConfirm && 'not-allowed'
               }}
             onClick={this.ChangeButtonFunction}
@@ -197,9 +236,10 @@ export default class SingleReport extends Component {
           />
           <input
             // style={{ background: this.state.bgColor }}
-            disabled={this.state.disabledButtonDelete}
+            disabled={this.state.disabledButtonDelete }
             style={{
-              backgroundColor: this.state.disabledButtonDelete && '#d3d3d3',
+              backgroundColor: (this.state.disabledButtonDelete ||
+               this.props.element.status === 'deleted'  ) &&  '#d3d3d3' ,
               cursor: this.state.disabledButtonDelete && 'not-allowed'
               }}
             id="redButton"
@@ -208,7 +248,7 @@ export default class SingleReport extends Component {
             value="Delete"
           />
           <ReactLogo
-            style={{ marginTop: 0 ,cursor: 'pointer' }}
+            style={{ marginTop: 0 ,cursor: 'pointer',marginLeft:'5px' }}
             onClick={() => {
               this.setState({ flag: !this.state.flag });
               

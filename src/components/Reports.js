@@ -70,6 +70,9 @@ export default class Reports extends Component {
           <table className="table table-striped" >
             <thead>
               <tr>
+              <th scope="col">
+                  <i className="TableHeadStyle">Reported request ID</i>
+                </th>
                 <th scope="col">
                   <i className="TableHeadStyle">Report description</i>
                 </th>

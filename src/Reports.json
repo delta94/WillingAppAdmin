@@ -1,5 +1,6 @@
 [{
-        "descrirtion": "Inappropriate launguage",
+        "id": "12345678",
+        "description": "Inappropriate launguage",
         "type": "null",
         "status": "open",
         "date": 1545579280229,
@@ -7,15 +8,17 @@
         "Phonnumber": "0551234678"
     },
     {
-        "descrirtion": "false post",
+        "id": "6209704",
+        "description": "false post",
         "type": "null",
-        "status": "close",
+        "status": "closed",
         "date": 1545579280229,
         "nameOfReporter": "Ofir",
         "Phonnumber": "0551234678"
     },
     {
-        "descrirtion": "not relevant anymore",
+        "id": "22589912",
+        "description": "not relevant anymore",
         "type": "null",
         "status": "deleted",
         "date": 1545579280229,
@@ -23,7 +26,8 @@
         "Phonnumber": "0551234678"
     },
     {
-        "descrirtion": "not readable(jibrish)",
+        "id":"344468999",
+        "description": "not readable(jibrish)",
         "type": "null",
         "status": "open",
         "date": 1545579280229,
