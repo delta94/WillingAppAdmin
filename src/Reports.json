@@ -11,7 +11,7 @@
         "id": "6209704",
         "description": "false post",
         "type": "null",
-        "status": "closed",
+        "status": "open",
         "date": 1545579280229,
         "nameOfReporter": "Ofir",
         "Phonnumber": "0551234678"
@@ -20,7 +20,7 @@
         "id": "22589912",
         "description": "not relevant anymore",
         "type": "null",
-        "status": "deleted",
+        "status": "open",
         "date": 1545579280229,
         "nameOfReporter": "Robers",
         "Phonnumber": "0551234678"

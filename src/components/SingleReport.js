@@ -93,7 +93,7 @@ export default class SingleReport extends Component {
   };
 
   handleClick = () => {
-    let element = { ...this.state.element };
+    
     
     this.setState({ disabledButtonDelete: true });
     this.setState({ disabledButtonConfirm: true });
@@ -113,7 +113,7 @@ export default class SingleReport extends Component {
     //console.log(this.props.closeOptions);
     // console.log(this.state.disabledButtonConfirm);
   //  console.log( 'The State', this.state);
-  //  console.log('The Element', this.state.element); 
+    console.log('The Element', this.state.element); 
     
    
 
