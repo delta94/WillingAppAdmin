@@ -11,7 +11,7 @@
         "id": "6209704",
         "description": "false post",
         "type": "null",
-        "status": "open",
+        "status": "deleted",
         "date": 1545579280229,
         "nameOfReporter": "Ofir",
         "Phonnumber": "0551234678"
@@ -29,7 +29,7 @@
         "id":"344468999",
         "description": "not readable(jibrish)",
         "type": "null",
-        "status": "open",
+        "status": "closed",
         "date": 1545579280229,
         "nameOfReporter": "Einat",
         "Phonnumber": "0551234678"

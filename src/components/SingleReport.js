@@ -149,7 +149,7 @@ export default class SingleReport extends Component {
       <tr>
         <Modal show={this.state.status} onHide={() => this.handleClose()}>
           <Modal.Header closeButton>
-            <Modal.Title>Delete this request?</Modal.Title>
+            <Modal.Title>Delete request ID {this.state.element.id}?</Modal.Title>
           </Modal.Header>
           {/* <Modal.Body> */}
           {/* <textarea
@@ -158,8 +158,7 @@ export default class SingleReport extends Component {
                 /> */}
           {/* </Modal.Body> */}
           <Modal.Body>
-            <h3>ID: {this.state.element.id}</h3>
-            <br/>
+            
            
             <button
             className="modalBTN"
@@ -223,11 +222,14 @@ export default class SingleReport extends Component {
         <td onClick={this.handleNoteShow}>{newDate.toLocaleString()}{" "}</td>
         <td className="sendButton" style={{ textAlign: "right" }} >
           <input
-            disabled={this.state.disabledButtonConfirm}
+            disabled={this.state.disabledButtonConfirm || this.state.element.status === 'deleted' || 
+            this.state.element.status === 'closed'}
             style={{
               backgroundColor: (this.state.disabledButtonConfirm || 
               this.state.element.status === 'deleted' || this.state.element.status === 'closed') &&  '#d3d3d3',
-              cursor: this.state.disabledButtonConfirm && 'not-allowed'
+              cursor: (this.state.disabledButtonConfirm || 
+              this.state.element.status === 'deleted' ||
+              this.state.element.status === 'closed') && 'not-allowed'
               }}
             onClick={this.ChangeButtonFunction}
             id="lightButton"
@@ -236,11 +238,11 @@ export default class SingleReport extends Component {
           />
           <input
             // style={{ background: this.state.bgColor }}
-            disabled={this.state.disabledButtonDelete }
+            disabled={this.state.disabledButtonDelete || this.state.element.status === 'deleted' }
             style={{
               backgroundColor: (this.state.disabledButtonDelete ||
-               this.props.element.status === 'deleted'  ) &&  '#d3d3d3' ,
-              cursor: this.state.disabledButtonDelete && 'not-allowed'
+               this.state.element.status === 'deleted'  ) &&  '#d3d3d3' ,
+              cursor: (this.state.disabledButtonDelete || this.state.element.status === 'deleted') && 'not-allowed'
               }}
             id="redButton"
             onClick={this.handleShow}
