@@ -23,7 +23,7 @@ export default class Accounts extends Component {
 
   componentDidMount = () => {
     Axios.get(
-      "https://cors-anywhere.herokuapp.com/http://ec2-52-91-26-189.compute-1.amazonaws.com:8080/X98ActivitieS?token=d6be46ed-5cdc-403b-9ed1-0af8c5329864"
+      "http://ec2-3-87-113-188.compute-1.amazonaws.com:8080/X98ActivitieS?token=d6be46ed-5cdc-403b-9ed1-0af8c5329864"
     )
       .then((res) => {
         console.log(res.data);
