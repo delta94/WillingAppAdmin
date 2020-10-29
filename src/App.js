@@ -4,6 +4,7 @@ import Dashboard from "./components/Dashboard.js";
 import Reports from "./components/Reports.js";
 import LogIn from "./components/LogIn";
 import Navbar from "./components/Navbar";
+import Post from "./components/Post";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-daterangepicker/daterangepicker.css";
@@ -39,6 +40,9 @@ export default class App extends Component {
             </Route>
             <Route exact path="/reports">
               <Reports />
+              </Route>
+            <Route exact path="/new post">
+              <Post />
             </Route>
           </Switch>
         </Router>
