@@ -98,10 +98,11 @@ export default class Dashboard extends React.Component {
       console.log(`😱 Axios getInformation failed: ${err}`);
     }
   };
+
   saveIcones = async (e) => {
     try {
       let res = await axios({
-        url: `${process.env.REACT_APP_BACKEND_URL_SYMMARY}`,
+        url: `${process.env.REACT_APP_BACKEND_URL_SUMMARY}`,
 
         method: 'get',
         headers: {

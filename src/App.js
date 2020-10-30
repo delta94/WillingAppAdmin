@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Accounts from './components/Accounts.js';
 // import Dashboard from './components/Dashboard.js';
-import Dashboard from './Pages/Dashboard';
+import Dashboard from './Pages/Dashboard.js';
 import Reports from './components/Reports.js';
 import LogIn from './components/LogIn';
 import Navbar from './components/Navbar';
