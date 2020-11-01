@@ -16,6 +16,8 @@ import data from '../Data.json';
 // import Graph from '../components/Dashboard copy';
 // import LineChart from '../components/graph/LineChart';
 import BarChart from '../components/graph/SimpleBarChart';
+import CustomizedLabelLineChart from '../components/graph/CustomizedLabelLineChart';
+import SplineChart from '../components/graph/SplineChart';
 
 // TODO transfer to utils !!
 const formatToday = () => {
@@ -185,7 +187,10 @@ const Dashboard = () => {
         ></Card>
       </div>
       <div className="graph-container_dashboard">
-        <BarChart onApply={() => fetchIcons} />
+        {/* <BarChart onApply={() => fetchIcons} /> */}
+        {/* <LineChart onApply={() => fetchIcons} /> */}
+        {/* <CustomizedLabelLineChart onApply={() => fetchIcons} /> */}
+        <SplineChart />
       </div>
       <article>
         <h4>Orders By Category</h4>

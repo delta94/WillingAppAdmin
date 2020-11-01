@@ -1,5 +1,5 @@
 .graph-container_dashboard {
-  margin: auto;
+  margin: 0 auto;
 }
 
 .category-list {
@@ -10,4 +10,8 @@
   max-width: 40rem;
   display: flex;
   flex-direction: row;
+}
+
+.recharts-wrapper {
+  margin: 0 auto;
 }

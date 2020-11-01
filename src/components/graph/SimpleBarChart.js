@@ -74,7 +74,7 @@ export default class Example extends PureComponent {
         margin={{
           top: 10,
 
-          bottom: 10,
+          bottom: 15,
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
