@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
-import data from "./Data.json";
+// import data from "./Data.json";
 import Modal from "react-bootstrap/Modal";
 import "../Navbar.css";
 import Axios from "axios";
-
+// import { element } from "prop-types";
+//Test
 export default class Accounts extends Component {
   constructor(props) {
     super(props);
@@ -15,12 +16,14 @@ export default class Accounts extends Component {
       loaded: false,
       status: false,
       note: false,
+      chosenUserName: "",
+      chosenUserId: 0,
     };
   }
 
   componentDidMount = () => {
     Axios.get(
-      "https://cors-anywhere.herokuapp.com/http://ec2-52-91-26-189.compute-1.amazonaws.com:8080/X98ActivitieS?token=d6be46ed-5cdc-403b-9ed1-0af8c5329864"
+      "http://ec2-3-87-113-188.compute-1.amazonaws.com:8080/X98ActivitieS?token=d6be46ed-5cdc-403b-9ed1-0af8c5329864"
     )
       .then((res) => {
         console.log(res.data);
@@ -32,7 +35,7 @@ export default class Accounts extends Component {
   };
 
   // function that sort the table order
-  ArrangeByName = () => {
+  SortByName = () => {
     let SortList = this.state.users.sort((a, b) => {
       if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
 
@@ -43,7 +46,7 @@ export default class Accounts extends Component {
     this.setState({ users: SortList });
   };
 
-  ArrangeById = () => {
+  SortById = () => {
     let SortList = this.state.users.sort((a, b) => {
       if (a.id < b.id) return -1;
 
@@ -54,7 +57,7 @@ export default class Accounts extends Component {
     this.setState({ users: SortList });
   };
 
-  ArrangeByPhone = () => {
+  SortByPhone = () => {
     let SortList = this.state.users.sort((a, b) => {
       if (a.phone < b.phone) return -1;
 
@@ -65,7 +68,7 @@ export default class Accounts extends Component {
     this.setState({ users: SortList });
   };
 
-  ArrangeByCDate = () => {
+  SortByCDate = () => {
     let SortList = this.state.users.sort((a, b) => {
       if (a.createDate.toLowerCase() < b.createDate.toLowerCase()) return -1;
 
@@ -76,7 +79,7 @@ export default class Accounts extends Component {
     this.setState({ users: SortList });
   };
 
-  ArrangeByDate = () => {
+  SortByDate = () => {
     let SortList = this.state.users.sort((a, b) => {
       if (a.updateDate.toLowerCase() < b.updateDate.toLowerCase()) return -1;
 
@@ -87,7 +90,7 @@ export default class Accounts extends Component {
     this.setState({ users: SortList });
   };
 
-  ArrangeByRequests = () => {
+  SortByRequests = () => {
     let SortList = this.state.users.sort((a, b) => {
       if (a.numOfRequests < b.numOfRequests) return -1;
 
@@ -106,25 +109,31 @@ export default class Accounts extends Component {
       this.setState({ status: true });
     }
   };
+
   handleNoteClose = () => this.setState({ note: false });
   handleNoteShow = () => this.setState({ note: true });
-
   handleClose = () => this.setState({ status: false });
-  handleShow = () => this.setState({ status: true });
+  handleShow = (name, id) => this.setState({ status: true, chosenUserName: name, chosenUserId: id});
+
+
+
 
   render() {
     document.body.style = "background: #f5f5f5;";
     return (
       <div>
         <Navbar />
-        {/* modal section */}
+
+        {/* Modal Section */}
         <Modal show={this.state.status} onHide={() => this.handleClose()}>
           <Modal.Header closeButton>
-            <Modal.Title>Send Notification to User Name</Modal.Title>
+            <Modal.Title>Hi {this.state.chosenUserName} ( {this.state.chosenUserId} ) </Modal.Title>
           </Modal.Header>
+
           <Modal.Body>
             <textarea className="textareaStyle" />
           </Modal.Body>
+
           <Modal.Footer>
             <button
               className="btn btn-secondary"
@@ -137,21 +146,24 @@ export default class Accounts extends Component {
             </button>
           </Modal.Footer>
         </Modal>
-        {/* modal section ends */}
+
+        {/* Modal Section Ends */}
         <Modal show={this.state.note} onHide={() => this.handleNoteClose()}>
           <Modal.Header closeButton>
             <Modal.Title>Report Details:</Modal.Title>
           </Modal.Header>
+
           <Modal.Body>
             <h6>ID:</h6>
             <p> </p>
             <h6>Name</h6>
-            <p> phone number</p>
+            <p>phone number</p>
             <h6></h6>
             <p>
-              <br />
+              <br/>
             </p>
           </Modal.Body>
+
           <Modal.Footer>
             <button
               className="btn btn-secondary"
@@ -164,6 +176,7 @@ export default class Accounts extends Component {
             </button> */}
           </Modal.Footer>
         </Modal>
+
         {this.state.loaded ? (
           <div style={{ marginTop: 30 }} className="container">
             <table className="table table-striped">
@@ -172,7 +185,7 @@ export default class Accounts extends Component {
                   <th scope="col">
                     <i
                       className="TableHeadStyle"
-                      onClick={() => this.ArrangeById()}
+                      onClick={() => this.SortById()}
                     >
                       ID
                     </i>
@@ -180,7 +193,7 @@ export default class Accounts extends Component {
                   <th scope="col">
                     <i
                       className="TableHeadStyle"
-                      // onClick={() => this.ArrangeByName()}
+                      // onClick={() => this.SortByName()}
                     >
                       Name
                     </i>
@@ -188,15 +201,15 @@ export default class Accounts extends Component {
                   <th scope="col">
                     <i
                       className="TableHeadStyle"
-                      onClick={() => this.ArrangeByPhone()}
+                      onClick={() => this.SortByPhone()}
                     >
-                      Telephone
+                      Phone
                     </i>
                   </th>
                   <th scope="col">
                     <i
                       className="TableHeadStyle"
-                      // onClick={() => this.ArrangeByStatus()}
+                      // onClick={() => this.SortByStatus()}
                     >
                       Status
                     </i>
@@ -204,23 +217,23 @@ export default class Accounts extends Component {
                   <th scope="col">
                     <i
                       className="TableHeadStyle"
-                      // onClick={() => this.ArrangeByCDate()}
+                      // onClick={() => this.SortByCDate()}
                     >
-                      Create date
+                      Create Date
                     </i>
                   </th>
                   <th scope="col">
                     <i
                       className="TableHeadStyle"
-                      // onClick={() => this.ArrangeByDate()}
+                      // onClick={() => this.SortByDate()}
                     >
-                      Last conection
+                      Last Connection
                     </i>
                   </th>
                   <th scope="col">
                     <i
                       className="TableHeadStyle"
-                      // onClick={() => this.ArrangeByRequests()}
+                      // onClick={() => this.SortByRequests()}
                     >
                       Requests
                     </i>
@@ -257,7 +270,7 @@ export default class Accounts extends Component {
                       </td>
                       <td className="sendButton">
                         <input
-                          onClick={() => this.handleShow()}
+                          onClick={() => this.handleShow(element.name, element.id)}
                           data-toggle="modal"
                           data-target="#exampleModal"
                           className="inTableButton"
@@ -276,6 +289,7 @@ export default class Accounts extends Component {
             <span className="sr-only">Loading...</span>
           </div>
         )}
+
       </div>
     );
   }

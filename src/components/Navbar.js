@@ -36,6 +36,11 @@ export default class Navbar extends Component {
                 <button className="buttonStyle">Reports</button>
               </Link>
             </div>
+            <div className="col-sm">
+              <Link className="linkstyle" path to="/new post">
+                <button className="buttonStyle">New post</button>
+              </Link>
+            </div>
             <div className="col-8"></div>
           </div>
         </nav>

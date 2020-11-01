@@ -6,20 +6,21 @@ class SplineChart extends Component {
   render() {
     const options = {
       animationEnabled: true,
-      title: {
-        text: 'Monthly Sales - 2017',
-      },
+      //   title: {
+      //     text: 'Monthly Sales - 2017',
+      //   },
       axisX: {
         valueFormatString: 'MMM',
       },
       axisY: {
-        title: 'Sales (in USD)',
-        prefix: '$',
+        title: 'Number of users (per month)',
+        // prefix: '$',
         includeZero: false,
       },
       data: [
         {
-          yValueFormatString: '$#,###',
+          //   yValueFormatString: '$#,###',
+          yValueFormatString: '#,###',
           xValueFormatString: 'MMMM',
           type: 'spline',
           dataPoints: [

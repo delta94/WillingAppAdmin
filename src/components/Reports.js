@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import Modal from "react-bootstrap/Modal";
 import Navbar from "./Navbar";
 import Users from "../users.json";
-import { ReactComponent as ReactLogo } from "../Dots.svg";
 import UsersReports from "../Reports.json";
 import SingleReport from "./SingleReport";
 import "../Reports.css";
+
+
 
 export default class Reports extends Component {
   constructor(props) {
@@ -18,6 +17,8 @@ export default class Reports extends Component {
       note: false,
       flag: false,
       button: true,
+      
+     
     };
   }
   // show = () => {
@@ -25,6 +26,9 @@ export default class Reports extends Component {
   //     return <div>works</div>;
   //   }
   // };
+
+  
+
   statusChange = () => {
     if (this.state.status) {
       this.setState({ status: false });
@@ -52,29 +56,38 @@ export default class Reports extends Component {
     // this.setState({button: false})
   };
 
+  
+
   render() {
-    console.log(UsersReports);
+    //console.log(UsersReports);
     return (
-      <div>
+      <div >
+      
         <Navbar />
-        <div style={{ marginTop: 30 }} className="container">
-          <table className="table table-striped">
+        
+        
+        <div style={{ marginTop: 30, zIndex:50 }} className="container">
+          <table className="table table-striped" >
             <thead>
               <tr>
+              <th scope="col">
+                  <i className="TableHeadStyle">Reported request ID</i>
+                </th>
                 <th scope="col">
                   <i className="TableHeadStyle">Report description</i>
                 </th>
-                <th scope="col">
+                <th scope="col" >
+                  <i className="TableHeadStyle" >Status</i>
+                </th>
+                {/* <th scope="col">
                   <i className="TableHeadStyle">type</i>
-                </th>
+                </th> */}
                 {/* <th scope="col">
                   <i className="TableHeadStyle"></i>
                 </th> */}
+               
                 <th scope="col">
-                  <i className="TableHeadStyle">Status</i>
-                </th>
-                <th scope="col">
-                  <i className="TableHeadStyle">date</i>
+                  <i className="TableHeadStyle">Date</i>
                 </th>
                 {/* <th scope="col">
                   <i className="TableHeadStyle"></i>
@@ -82,14 +95,14 @@ export default class Reports extends Component {
                 <th scope="col">
                   <i className="TableHeadStyle"></i>
                 </th> */}
-                <th className="sendBurronStyle" scope="col">
-                  block
+                <th className="sendBurronStyle"  scope="col">
+                  
                 </th>
               </tr>
             </thead>
             <tbody>
-              {UsersReports.map((element) => {
-                return <SingleReport element={element} />;
+              {UsersReports.map((element,index) => {
+                return <SingleReport key={index} element={element}  />;
               })}
             </tbody>
           </table>
