@@ -14,8 +14,13 @@ export default class Accounts extends Component {
     this.state = {
       users: [],
       loaded: false,
+      userStatus: "",
       status: false,
       note: false,
+      sort: {
+        thName: "",
+        sortDirection: "",
+      },
       chosenUserName: "",
       chosenUserId: 0,
     };
@@ -34,100 +39,99 @@ export default class Accounts extends Component {
       });
   };
 
-  // function that sort the table order
-  SortByName = () => {
-    let SortList = this.state.users.sort((a, b) => {
-      if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+  updateColToSort = (header) => {
+    if (
+      this.state.sort.thName === header &&
+      this.state.sort.sortDirection === "ascending"
+    ) {
+      this.setState({
+        sort: { thName: header, sortDirection: "descending" },
+      });
+    } else
+      this.setState({
+        sort: { thName: header, sortDirection: "ascending" },
+      });
 
-      if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-
-      return 0;
-    });
-    this.setState({ users: SortList });
+    switch (header) {
+      case "id":
+      case "phone":
+      case "createDate":
+      case "updateDate":
+      case "requestCounter":
+        this.SortTbByColTh(header);
+        break;
+      case "name":
+        this.SortTbByThName();
+        break;
+      default:
+        console.log("wow");
+    }
   };
 
-  SortById = () => {
-    let SortList = this.state.users.sort((a, b) => {
-      if (a.id < b.id) return -1;
-
-      if (a.id > b.id) return 1;
-
+  SortTbByColTh = (header) => {
+    let SortedList = this.state.users.sort((a, b) => {
+      if (a[header] < b[header])
+        return this.state.sort.sortDirection === "ascending" ? -1 : 1;
+      if (a[header] > b[header])
+        return this.state.sort.sortDirection === "ascending" ? 1 : -1;
       return 0;
     });
-    this.setState({ users: SortList });
+    this.setState({ users: SortedList });
   };
 
-  SortByPhone = () => {
-    let SortList = this.state.users.sort((a, b) => {
-      if (a.phone < b.phone) return -1;
+  SortTbByThName = () => {
+    this.checkIfUpperCase();
 
-      if (a.phone > b.phone) return 1;
-
+    let SortedList = this.state.users.sort((a, b) => {
+      if (a.name < b.name ) 
+        return this.state.sort.sortDirection === "ascending" ? -1 : 1;
+      if (a.name > b.name)
+        return this.state.sort.sortDirection === "ascending" ? 1 : -1;
       return 0;
+      // }
     });
-    this.setState({ users: SortList });
+    this.setState({ users: SortedList });
   };
 
-  SortByCDate = () => {
-    let SortList = this.state.users.sort((a, b) => {
-      if (a.createDate.toLowerCase() < b.createDate.toLowerCase()) return -1;
-
-      if (a.createDate.toLowerCase() > b.createDate.toLowerCase()) return 1;
-
-      return 0;
+  checkIfUpperCase = () => {
+    this.state.users.filter((user) => {
+      if (user.name !== null) {
+        return user.name.toLowerCase();
+      }
     });
-    this.setState({ users: SortList });
-  };
-
-  SortByDate = () => {
-    let SortList = this.state.users.sort((a, b) => {
-      if (a.updateDate.toLowerCase() < b.updateDate.toLowerCase()) return -1;
-
-      if (a.updateDate.toLowerCase() > b.updateDate.toLowerCase()) return 1;
-
-      return 0;
-    });
-    this.setState({ users: SortList });
-  };
-
-  SortByRequests = () => {
-    let SortList = this.state.users.sort((a, b) => {
-      if (a.numOfRequests < b.numOfRequests) return -1;
-
-      if (a.numOfRequests > b.numOfRequests) return 1;
-
-      return 0;
-    });
-    this.setState({ users: SortList });
   };
 
   //show and hide the modal
-  statusChange = () => {
-    if (this.state.status) {
+  ChangeNotifStatus = () => {
+    if (this.state.notifStatus) {
       this.setState({ status: false });
     } else {
       this.setState({ status: true });
     }
   };
 
+
   handleNoteClose = () => this.setState({ note: false });
   handleNoteShow = () => this.setState({ note: true });
   handleClose = () => this.setState({ status: false });
-  handleShow = (name, id) => this.setState({ status: true, chosenUserName: name, chosenUserId: id});
-
+  handleShow = (name, id) =>
+    this.setState({ status: true, chosenUserName: name, chosenUserId: id });
 
 
 
   render() {
-    document.body.style = "background: #f5f5f5;";
+    document.body.style = "background: #f55f5;";
     return (
       <div>
         <Navbar />
 
-        {/* Modal Section */}
+        {/* Modal Section - notification */}
         <Modal show={this.state.status} onHide={() => this.handleClose()}>
           <Modal.Header closeButton>
-            <Modal.Title>Hi {this.state.chosenUserName} ( {this.state.chosenUserId} ) </Modal.Title>
+            <Modal.Title>
+              Send Notification to {this.state.chosenUserName} ({" "}
+              {this.state.chosenUserId} ){" "}
+            </Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
@@ -147,7 +151,7 @@ export default class Accounts extends Component {
           </Modal.Footer>
         </Modal>
 
-        {/* Modal Section Ends */}
+        {/* Modal Section - report  */}
         <Modal show={this.state.note} onHide={() => this.handleNoteClose()}>
           <Modal.Header closeButton>
             <Modal.Title>Report Details:</Modal.Title>
@@ -160,7 +164,7 @@ export default class Accounts extends Component {
             <p>phone number</p>
             <h6></h6>
             <p>
-              <br/>
+              <br />
             </p>
           </Modal.Body>
 
@@ -185,27 +189,30 @@ export default class Accounts extends Component {
                   <th scope="col">
                     <i
                       className="TableHeadStyle"
-                      onClick={() => this.SortById()}
+                      onClick={() => this.updateColToSort("id")}
                     >
                       ID
                     </i>
                   </th>
+
                   <th scope="col">
                     <i
                       className="TableHeadStyle"
-                      // onClick={() => this.SortByName()}
+                      onClick={() => this.updateColToSort("name")}
                     >
                       Name
                     </i>
                   </th>
+
                   <th scope="col">
                     <i
                       className="TableHeadStyle"
-                      onClick={() => this.SortByPhone()}
+                      onClick={() => this.updateColToSort("phone")}
                     >
                       Phone
                     </i>
                   </th>
+
                   <th scope="col">
                     <i
                       className="TableHeadStyle"
@@ -214,72 +221,120 @@ export default class Accounts extends Component {
                       Status
                     </i>
                   </th>
+
                   <th scope="col">
                     <i
                       className="TableHeadStyle"
-                      // onClick={() => this.SortByCDate()}
+                      onClick={() => this.updateColToSort("createDate")}
                     >
                       Create Date
                     </i>
                   </th>
+
                   <th scope="col">
                     <i
                       className="TableHeadStyle"
-                      // onClick={() => this.SortByDate()}
+                      onClick={() => this.updateColToSort("updateDate")}
                     >
                       Last Connection
                     </i>
                   </th>
+
                   <th scope="col">
                     <i
                       className="TableHeadStyle"
-                      // onClick={() => this.SortByRequests()}
+                      onClick={() => this.updateColToSort("requestCounter")}
                     >
                       Requests
                     </i>
                   </th>
+
                   <th className="sendBurronStyle" scope="col">
                     Send
                   </th>
                 </tr>
               </thead>
+
               <tbody>
                 {this.state.users.map((element) => {
                   var mycreateDate = new Date(parseInt(element.createDate));
                   var myupdateDate = new Date(parseInt(element.updateDate));
-                  return (
-                    <tr>
-                      <td onClick={() => this.handleNoteShow()}>
-                        {element.id}
-                      </td>
-                      <td id="NameHead" onClick={() => this.handleNoteShow()}>
-                        {element.name}
-                      </td>
-                      <td onClick={() => this.handleNoteShow()}>
-                        {element.phone}{" "}
-                      </td>{" "}
-                      <td> </td>
-                      <td onClick={() => this.handleNoteShow()}>
-                        {mycreateDate.toLocaleString()}{" "}
-                      </td>
-                      <td onClick={() => this.handleNoteShow()}>
-                        {myupdateDate.toLocaleString()}{" "}
-                      </td>
-                      <td onClick={() => this.handleNoteShow()}>
-                        {element.requestCounter}
-                      </td>
-                      <td className="sendButton">
-                        <input
-                          onClick={() => this.handleShow(element.name, element.id)}
-                          data-toggle="modal"
-                          data-target="#exampleModal"
-                          className="inTableButton"
-                          type="submit"
-                          value="Send"
-                        />
-                      </td>
-                    </tr>
-                  );
+                  if ( element.status === 0) {
+                    return (
+                      <tr key={element.id}>
+  
+                        <td onClick={() => this.handleNoteShow()}>
+                          {element.id}
+                        </td>
+                        <td id="NameHead" onClick={() => this.handleNoteShow()}>
+                          {element.name}
+                        </td>
+                        <td onClick={() => this.handleNoteShow()}>
+                          {element.phone}
+                        </td>
+                        <td>Blocked</td>
+                        <td onClick={() => this.handleNoteShow()}>
+                          {mycreateDate.toLocaleString()}
+                        </td>
+                        <td onClick={() => this.handleNoteShow()}>
+                          {myupdateDate.toLocaleString()}
+                        </td>
+                        <td onClick={() => this.handleNoteShow()}>
+                          {element.requestCounter}
+                        </td>
+                        <td className="sendButton">
+                          <input
+                            onClick={() =>
+                              this.handleShow(element.name, element.id)
+                            }
+                            data-toggle="modal"
+                            data-target="#exampleModal"
+                            className="inTableButton"
+                            type="submit"
+                            value="Send"
+                          />
+                        </td>
+                      </tr>
+                    );
+                  }
+                  else {
+                    return (
+                      <tr key={element.id}>
+  
+                        <td onClick={() => this.handleNoteShow()}>
+                          {element.id}
+                        </td>
+                        <td id="NameHead" onClick={() => this.handleNoteShow()}>
+                          {element.name}
+                        </td>
+                        <td onClick={() => this.handleNoteShow()}>
+                          {element.phone}
+                        </td>
+                        <td>Active</td>
+                        <td onClick={() => this.handleNoteShow()}>
+                          {mycreateDate.toLocaleString()}
+                        </td>
+                        <td onClick={() => this.handleNoteShow()}>
+                          {myupdateDate.toLocaleString()}
+                        </td>
+                        <td onClick={() => this.handleNoteShow()}>
+                          {element.requestCounter}
+                        </td>
+                        <td className="sendButton">
+                          <input
+                            onClick={() =>
+                              this.handleShow(element.name, element.id)
+                            }
+                            data-toggle="modal"
+                            data-target="#exampleModal"
+                            className="inTableButton"
+                            type="submit"
+                            value="Send"
+                          />
+                        </td>
+                      </tr>
+                    );
+                  }
                 })}
               </tbody>
             </table>
@@ -289,8 +344,10 @@ export default class Accounts extends Component {
             <span className="sr-only">Loading...</span>
           </div>
         )}
-
       </div>
     );
   }
 }
+
+
+
