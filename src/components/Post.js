@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import RangeSlider from "react-bootstrap-range-slider";
-import Location from "./Location";
-
+// import Location from "./Location";
+import Navbar from "./Navbar";
 export default class Post extends Component {
   constructor(props) {
     super(props);
@@ -48,6 +48,7 @@ export default class Post extends Component {
     document.body.style = "background: #f5f5f5;";
     return (
       <div>
+           <Navbar />
         <form id="categoryForm" className="container">
           <h3 style={{ paddingTop: 30 }}>Choose Category</h3>
           <br />
