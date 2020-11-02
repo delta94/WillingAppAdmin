@@ -1,8 +1,9 @@
+
 import React, { Component } from "react";
 import Accounts from "./components/Accounts.js";
-import Dashboard from "./components/Dashboard.js";
+import Dashboard from "./Pages/Dashboard.js";
 import Reports from "./components/Reports.js";
-import LogIn from "./components/LogIn";
+import LogIn from "./components/LogIn"; 
 import Navbar from "./components/Navbar";
 import Post from "./components/Post";
 import "./App.css";
@@ -15,7 +16,7 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      adminName: "",
+      adminName: '',
     };
   }
 
