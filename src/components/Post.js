@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import RangeSlider from "react-bootstrap-range-slider";
-// import Location from "./Location";
+import Location from "./Location";
 
 export default class Post extends Component {
   constructor(props) {
