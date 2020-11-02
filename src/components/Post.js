@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import RangeSlider from "react-bootstrap-range-slider";
-// import Location from "./Location";
+import Location from "./Location";
 import Navbar from "./Navbar";
 export default class Post extends Component {
   constructor(props) {
@@ -131,7 +131,7 @@ export default class Post extends Component {
             <span className="col-12">DESCRIPTION</span>
             <br />
             <span className="col-12">
-              <textarea
+              <textarea  style={{ backgroundColor:this.state.color }}
                 onChange={(e) => this.setState({ Description: e.target.value })}
                 className="textareaStyle"
               />
@@ -201,7 +201,7 @@ export default class Post extends Component {
               />
             </div>
             <span className="col-9">
-              {/* <Location /> */}
+              <Location />
             </span>
             {/* <input className="Input" /> */}
           </div>
