@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-
-import {Link} from 'react-router-dom'
 import "../Dashboard.css";
 import '../Login.css'
 import Navbar from '../components/Navbar';
 import axios from 'axios';
+import { Redirect} from 'react-router-dom';
+
 
 
 export default class LogIn extends Component {
@@ -14,6 +14,7 @@ export default class LogIn extends Component {
     this.state={
         email:'',
         password:'',
+        isAuth: false
        
     }
     }
@@ -37,16 +38,30 @@ export default class LogIn extends Component {
        axios.post('http://ec2-3-87-113-188.compute-1.amazonaws.com:8080/admin/login',request)
        .then(res => {
          console.log(res.data);
-        }).catch(err =>{
+         if (res.data.token) {
+            this.setState({isAuth: true})
+         }else if(res.data.message){
+            this.setState({isAuth: false}) 
+         }
+         
+         console.log(this.state);
+        }).then(
+          this.setState({email: '',password: ''})
+        ).catch(err =>{
             alert(err)
         })
 
        
    }
 
+ 
+
 
 
     render() {
+        if (this.state.isAuth) {
+            return <Redirect to='/dashboard'/>
+          }
         return (
             <>
             <Navbar/>
@@ -64,7 +79,7 @@ export default class LogIn extends Component {
                <br/>
                <div className='inputContainer'>
                <i className="fa fa-user"></i>
-               <input className='field' type ='text' onChange={this.validUser}   placeholder="Email"></input>
+               <input className='field' required type ='email' onChange={this.validUser} value={this.state.email}   placeholder="Email"></input>
                </div>
                
               
@@ -72,12 +87,12 @@ export default class LogIn extends Component {
                <br/>
                <div className='inputContainer'>
                <i className="fa fa-unlock-alt"></i>
-               <input className='field' type ='password' onChange={this.validPass}  placeholder='password'></input>
+               <input className='field' required type ='password' onChange={this.validPass} value={this.state.password}  placeholder='password'></input>
                </div>
                
                <div className='rowContainer'>
                 
-               <input className='childCon' id='autoLogin' type='checkbox' style={{textAlign:'left'}}></input>
+               <input className='childCon'  id='autoLogin' type='checkbox' style={{textAlign:'left'}}></input>
                <h3 style={{fontSize:'10px',marginLeft:'5px',whiteSpace:'nowrap'}}>Remember Me</h3>
 
                <h3 className='childCon' id='forgotPass' style={{fontSize: '10px',textAlign:'right',cursor:'pointer',fontWeight:'bold',

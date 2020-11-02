@@ -34,7 +34,7 @@ form{
     color: white;
     border-radius: 10px;
     height: 40px;
-    
+    border: none;
 }
 
 .login-box form{
