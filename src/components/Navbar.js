@@ -22,17 +22,17 @@ export default class Navbar extends Component {
           <div style={{ marginRight: 0 }} id="buttons" className="row">
             <div className="col-1"></div>
             <div className="col-sm">
-              <Link className="linkstyle" path to="/dashboard">
+              <Link className="linkstyle"  to="/dashboard">
                 <button className="buttonStyle">Dashboard</button>
               </Link>
             </div>
             <div className="col-sm">
-              <Link className="linkstyle" path to="/accounts">
+              <Link className="linkstyle"  to="/accounts">
                 <button className="buttonStyle">Accounts</button>
               </Link>
             </div>
             <div className="col-sm">
-              <Link className="linkstyle" path to="/reports">
+              <Link className="linkstyle"  to="/reports">
                 <button className="buttonStyle">Reports</button>
               </Link>
             </div>

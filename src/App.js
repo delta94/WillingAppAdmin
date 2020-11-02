@@ -3,7 +3,7 @@ import Accounts from "./components/Accounts.js";
 import Dashboard from "./components/Dashboard.js";
 import Reports from "./components/Reports.js";
 import LogIn from "./components/LogIn";
-import Navbar from "./components/Navbar";
+
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-daterangepicker/daterangepicker.css";
@@ -26,6 +26,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <Router>
+          
           <Switch>
             <Route exact path="/">
               <LogIn add={this.adminName} />
