@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "89839723d0aef89fb9a96f8d66b486a5",
+    "revision": "7fa7dd5fc4e3be217d8f911b60356ee3",
     "url": "/WillingAppAdmin/index.html"
   },
   {
-    "revision": "300175236840df64e220",
+    "revision": "7309588a1bcb91f1d567",
     "url": "/WillingAppAdmin/static/css/2.87ff213f.chunk.css"
   },
   {
-    "revision": "cb02efd0e810e1e406ac",
-    "url": "/WillingAppAdmin/static/css/main.2b6cd205.chunk.css"
+    "revision": "f985c36c2c68a5be64c8",
+    "url": "/WillingAppAdmin/static/css/main.e35feb86.chunk.css"
   },
   {
-    "revision": "300175236840df64e220",
-    "url": "/WillingAppAdmin/static/js/2.b0e61f20.chunk.js"
+    "revision": "7309588a1bcb91f1d567",
+    "url": "/WillingAppAdmin/static/js/2.9d978b79.chunk.js"
   },
   {
     "revision": "99e9bc6c81acb604904fe4c487fd0b3c",
-    "url": "/WillingAppAdmin/static/js/2.b0e61f20.chunk.js.LICENSE.txt"
+    "url": "/WillingAppAdmin/static/js/2.9d978b79.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "cb02efd0e810e1e406ac",
-    "url": "/WillingAppAdmin/static/js/main.02dfda5d.chunk.js"
+    "revision": "f985c36c2c68a5be64c8",
+    "url": "/WillingAppAdmin/static/js/main.84026f2c.chunk.js"
   },
   {
     "revision": "0cad4ba00758fd029d44",
