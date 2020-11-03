@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "./static/css/main.2b6cd205.chunk.css",
-    "main.js": "./static/js/main.b65932c0.chunk.js",
-    "main.js.map": "./static/js/main.b65932c0.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.c06ab82a.js",
-    "runtime-main.js.map": "./static/js/runtime-main.c06ab82a.js.map",
-    "static/css/2.2cb2fd66.chunk.css": "./static/css/2.2cb2fd66.chunk.css",
-    "static/js/2.b0e61f20.chunk.js": "./static/js/2.b0e61f20.chunk.js",
-    "static/js/2.b0e61f20.chunk.js.map": "./static/js/2.b0e61f20.chunk.js.map",
-    "index.html": "./index.html",
-    "precache-manifest.0b52f674c40b27bd7feae4323db8b3c6.js": "./precache-manifest.0b52f674c40b27bd7feae4323db8b3c6.js",
-    "service-worker.js": "./service-worker.js",
-    "static/css/2.2cb2fd66.chunk.css.map": "./static/css/2.2cb2fd66.chunk.css.map",
-    "static/css/main.2b6cd205.chunk.css.map": "./static/css/main.2b6cd205.chunk.css.map",
-    "static/js/2.b0e61f20.chunk.js.LICENSE.txt": "./static/js/2.b0e61f20.chunk.js.LICENSE.txt",
-    "static/media/Dots.f1d479ac.svg": "./static/media/Dots.f1d479ac.svg",
-    "static/media/font-awesome.min.css": "./static/media/fontawesome-webfont.fee66e71.woff"
+    "main.css": "/WillingAppAdmin/static/css/main.2b6cd205.chunk.css",
+    "main.js": "/WillingAppAdmin/static/js/main.ecb8903a.chunk.js",
+    "main.js.map": "/WillingAppAdmin/static/js/main.ecb8903a.chunk.js.map",
+    "runtime-main.js": "/WillingAppAdmin/static/js/runtime-main.89ae3d7c.js",
+    "runtime-main.js.map": "/WillingAppAdmin/static/js/runtime-main.89ae3d7c.js.map",
+    "static/css/2.87ff213f.chunk.css": "/WillingAppAdmin/static/css/2.87ff213f.chunk.css",
+    "static/js/2.b0e61f20.chunk.js": "/WillingAppAdmin/static/js/2.b0e61f20.chunk.js",
+    "static/js/2.b0e61f20.chunk.js.map": "/WillingAppAdmin/static/js/2.b0e61f20.chunk.js.map",
+    "index.html": "/WillingAppAdmin/index.html",
+    "precache-manifest.8a5ab1534cf42209927a7f4cbff2cda3.js": "/WillingAppAdmin/precache-manifest.8a5ab1534cf42209927a7f4cbff2cda3.js",
+    "service-worker.js": "/WillingAppAdmin/service-worker.js",
+    "static/css/2.87ff213f.chunk.css.map": "/WillingAppAdmin/static/css/2.87ff213f.chunk.css.map",
+    "static/css/main.2b6cd205.chunk.css.map": "/WillingAppAdmin/static/css/main.2b6cd205.chunk.css.map",
+    "static/js/2.b0e61f20.chunk.js.LICENSE.txt": "/WillingAppAdmin/static/js/2.b0e61f20.chunk.js.LICENSE.txt",
+    "static/media/Dots.f1d479ac.svg": "/WillingAppAdmin/static/media/Dots.f1d479ac.svg",
+    "static/media/font-awesome.min.css": "/WillingAppAdmin/static/media/fontawesome-webfont.fee66e71.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.c06ab82a.js",
-    "static/css/2.2cb2fd66.chunk.css",
+    "static/js/runtime-main.89ae3d7c.js",
+    "static/css/2.87ff213f.chunk.css",
     "static/js/2.b0e61f20.chunk.js",
     "static/css/main.2b6cd205.chunk.css",
-    "static/js/main.b65932c0.chunk.js"
+    "static/js/main.ecb8903a.chunk.js"
   ]
 }
