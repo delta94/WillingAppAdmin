@@ -1,23 +1,18 @@
 import React, { useReducer, useEffect } from 'react';
 import axios from 'axios';
 
-import { ListGroup, Container, Row, Col } from 'react-bootstrap';
+import './Dashboard.css';
+
 import Card from '../components/shared/UIElements/Card';
 
 import Navbar from '../components/Navbar';
-import CategoryItem from '../components/dashboard/CategoryItem';
 
 import DateRangePicker from 'react-bootstrap-daterangepicker';
-// import { useDatePickerRange } from '../shared/hooks/use-datePickerRange-hook';
 
 import Users from '../users.json';
 import data from '../Data.json';
 
-// import Graph from '../components/Dashboard copy';
-// import LineChart from '../components/graph/LineChart';
-import BarChart from '../components/graph/SimpleBarChart';
-import CustomizedLabelLineChart from '../components/graph/CustomizedLabelLineChart';
-import SplineChart from '../components/graph/SplineChart';
+import SplineChart from '../components/dashboard/graph/SplineChart';
 
 // TODO transfer to utils !!
 const formatToday = () => {
@@ -154,71 +149,90 @@ const Dashboard = () => {
   }, [state.date]);
 
   return (
-    <React.Fragment>
-      <Navbar /> <br />
-      <DateRangePicker
-        onEvent={handleEvent}
-        initialSettings={{
-          showDropdowns: true,
-        }}
-        startDate={state.date.startDate}
-        endDate={state.date.endDate}
-      >
-        <input className="dateTimeInput " type="text" />
-      </DateRangePicker>{' '}
-      <br />
-      <br />
-      <div className="card-container_dashboard">
-        <Card
-          title="Total Accounts:"
-          subtitle={state.icons.totalAccounts}
-        ></Card>
-        <Card
-          title="Total active users:"
-          subtitle={state.icons.totalActiveUsers}
-        ></Card>
-        <Card
-          title=" Total Active Requests Last Month:"
-          subtitle={state.icons.totalActiveRequesterLastMonth}
-        ></Card>
-        <Card
-          title="Total Active Requests:"
-          subtitle={state.icons.totalActiveRequests}
-        ></Card>
+    <React.Fragment className="dashboard-container">
+      <Navbar className="navbar-container" />
+
+      <div className="date-picker-container">
+        <DateRangePicker
+          onEvent={handleEvent}
+          initialSettings={{
+            showDropdowns: true,
+          }}
+          startDate={state.date.startDate}
+          endDate={state.date.endDate}
+        >
+          <input className="dateTimeInput" type="text" />
+        </DateRangePicker>{' '}
       </div>
-      <div className="graph-container_dashboard">
-        {/* <BarChart onApply={() => fetchIcons} /> */}
-        {/* <LineChart onApply={() => fetchIcons} /> */}
-        {/* <CustomizedLabelLineChart onApply={() => fetchIcons} /> */}
-        <SplineChart />
-      </div>
-      <article>
-        <h4>Orders By Category</h4>
+
+      <article className="icons-plus-graph-container">
+        <div className="icons-container">
+          <Card
+            subtitle="Total Accounts"
+            title={state.icons.totalAccounts}
+          ></Card>
+          <Card
+            subtitle="Active Users"
+            title={state.icons.totalActiveUsers}
+          ></Card>
+          <Card
+            subtitle=" Orders Last Month"
+            title={state.icons.totalActiveRequesterLastMonth}
+          ></Card>
+          <Card
+            subtitle="Active Orders"
+            title={state.icons.totalActiveRequests}
+          ></Card>
+        </div>
+
+        <div className="graph-container">
+          <SplineChart />
+        </div>
+      </article>
+
+      <article className="categories-container">
+        <h4 className="start-row">Orders By Category</h4>
         <div className="card-container_dashboard">
-          <CategoryItem src="./emergency.svg" name="category">
-            {state.registersData.addRequestCount}
-          </CategoryItem>
-          <CategoryItem src="./Ride_Delivery.svg" name="category">
-            {state.registersData.uniqueUsersCount}
-          </CategoryItem>
-          <CategoryItem src="./Road assist.svg" name="category">
-            {state.registersData.registerCount}
-          </CategoryItem>
-          <CategoryItem src="./item needed.svg" name="category">
-            {state.registersData.registerCount}
-          </CategoryItem>
-          <CategoryItem src="./Give away.svg" name="category">
-            {state.registersData.registerCount}
-          </CategoryItem>
-          <CategoryItem src="./Lost and found.svg" name="category">
-            {state.registersData.registerCount}
-          </CategoryItem>
-          <CategoryItem src="./Social.svg" name="category">
-            {state.registersData.registerCount}
-          </CategoryItem>
-          <CategoryItem src="./General.svg" name=" name">
-            {state.registersData.registerCount}
-          </CategoryItem>
+          <Card
+            src="./emergency.svg"
+            subtitle="category name"
+            title={state.registersData.addRequestCount}
+          ></Card>
+          <Card
+            src="./Ride_Delivery.svg"
+            subtitle="category name"
+            title={state.registersData.addRequestCount}
+          ></Card>
+          <Card
+            src="./Road assist.svg"
+            subtitle="category name"
+            title={state.registersData.addRequestCount}
+          ></Card>
+          <Card
+            src="./item needed.svg"
+            subtitle="category name"
+            title={state.registersData.addRequestCount}
+          ></Card>
+          <Card
+            src="./Give away.svg"
+            subtitle="category name"
+            title={state.registersData.addRequestCount}
+          ></Card>
+          <Card
+            src="./Lost and found.svg"
+            subtitle="category name"
+            title={state.registersData.addRequestCount}
+          ></Card>
+          <Card
+            src="./Social.svg"
+            subtitle="category name"
+            title={state.registersData.addRequestCount}
+          ></Card>
+          <Card
+            src="./General.svg"
+            subtitle="category name"
+            title={state.registersData.addRequestCount}
+          ></Card>
         </div>
       </article>
     </React.Fragment>

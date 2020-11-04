@@ -5,13 +5,31 @@ import './Card.css';
 const Card = (props) => {
   return (
     <div
-      className={`card ${props.className}`}
+      className={`card_dashboard ${props.className}`}
       style={props.style}
       onClick={props.onClick}
     >
-      <h6>{props.title}</h6>
-      <h8 style={{ color: ' rgb(204, 95, 231)' }}>{props.subtitle}</h8>
-      {props.children}
+      {props.src && (
+        <img src={props.src} style={{ width: '80px', height: '20px' }}></img>
+      )}
+      <p
+        style={{
+          fontSize: '1.4rem',
+          color: 'rgb(24, 23, 24)',
+        }}
+      >
+        {props.children}
+      </p>
+
+      <h5
+        style={{
+          fontSize: '1.2rem',
+          color: 'rgb(24, 23, 24)',
+        }}
+      >
+        {props.title ? props.title : 0}
+      </h5>
+      {props.subtitle && <p>{props.subtitle}</p>}
     </div>
   );
 };

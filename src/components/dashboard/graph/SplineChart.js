@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CanvasJSReact from '../../assets/canvasjs.react';
+import CanvasJSReact from '../../../assets/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class SplineChart extends Component {
@@ -13,10 +13,15 @@ class SplineChart extends Component {
         valueFormatString: 'MMM',
       },
       axisY: {
-        title: 'Number of users (per month)',
+        title: 'Active Users (per month)',
         // prefix: '$',
         includeZero: false,
       },
+      // We suggest not to set width/height property unless it is really required.
+      // When you don’t set the width/height, CanvasJS automatically takes @@@ the size
+      // of its container @@@!! and hence works well with responsive websites
+      // width: 1200,
+      // hight: 300,
       data: [
         {
           //   yValueFormatString: '$#,###',

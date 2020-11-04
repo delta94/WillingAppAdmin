@@ -14,25 +14,22 @@
   tr:nth-child(even) {
     background-color: #dddddd;
   } */
- div{
-background-color: #4d34c1;
+
+/* TOFIX!! makes all divs the same... is it imported anywere?  */
+div {
+  background-color: #4d34c1;
   width: 100%;
   height: 80px;
 }
- 
-#menu{
+
+#menu {
   background-color: #4d34c1;
-  
 }
-btn-group{
+btn-group {
   font-family: OpenSans-SemiBold;
   color: white;
   text-decoration: none;
-
-
 }
-#willingLogo{
-height: 300px;
-
+#willingLogo {
+  height: 300px;
 }
-  
