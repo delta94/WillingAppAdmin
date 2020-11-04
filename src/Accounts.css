@@ -1,0 +1,12 @@
+.StatDot {
+    height: 6px;
+    width: 6px;
+    background-color: #5ac25a;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 10px 5px 3px 3px;
+}
+
+.userStatus {
+    display: flex;
+}

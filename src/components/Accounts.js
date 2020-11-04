@@ -24,6 +24,8 @@ export default class Accounts extends Component {
       },
       chosenUserName: "",
       chosenUserId: 0,
+      btnDisable: false,
+      color: ""
     };
   }
 
@@ -32,7 +34,7 @@ export default class Accounts extends Component {
       "http://ec2-3-87-113-188.compute-1.amazonaws.com:8080/X98ActivitieS?token=d6be46ed-5cdc-403b-9ed1-0af8c5329864"
     )
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         this.setState({ users: res.data, loaded: true });
       })
       .catch((err) => {
@@ -96,7 +98,7 @@ export default class Accounts extends Component {
   };
 
   checkIfUpperCase = () => {
-    this.state.users.filter((user) => {
+    this.state.users.filter(user => {
       if (user.name !== null) {
         return user.name.toLowerCase();
       }
@@ -115,8 +117,17 @@ export default class Accounts extends Component {
   handleNoteClose = () => this.setState({ note: false });
   handleNoteShow = () => this.setState({ note: true });
   handleClose = () => this.setState({ status: false });
-  handleShow = (name, id) =>
-    this.setState({ status: true, chosenUserName: name, chosenUserId: id });
+  handleShow = (name, id, fcm) => {
+    //console.log( name, id, fcm);
+    if ( fcm !== null ) {
+      this.setState({ status: true, chosenUserName: name, chosenUserId: id, btnDisable: false, color: ''});
+    }
+    else 
+      this.setState({ status: true, chosenUserName: name, chosenUserId: id, btnDisable: true, color: 'gray'});
+  }
+  
+
+    
 
 
 
@@ -146,7 +157,11 @@ export default class Accounts extends Component {
             >
               Close
             </button>
-            <button className="modalBTN" onClick={() => this.handleClose()}>
+            <button 
+              className="modalBTN" 
+              onClick={() => this.handleClose()} 
+              style={{ backgroundColor: this.state.color}} 
+              disabled={this.state.btnDisable}>
               Send
             </button>
           </Modal.Footer>
@@ -163,7 +178,7 @@ export default class Accounts extends Component {
             <p> </p>
             <h6>Name</h6>
             <p>phone number</p>
-            <h6></h6>
+            {/* <h6></h6> */}
             <p>
               <br />
             </p>
@@ -257,65 +272,69 @@ export default class Accounts extends Component {
               </thead>
 
               <tbody>
-                {this.state.users.map((element) => {
+                {this.state.users.map((element, i) => {
                   var mycreateDate = new Date(parseInt(element.createDate));
                   var myupdateDate = new Date(parseInt(element.updateDate));
-                 
-                    return (
-                      <tr key={element.id}>
-                        <td onClick={() => this.handleNoteShow()}>
-                          {element.id}
-                        </td>
-                        <td id="NameHead" onClick={() => this.handleNoteShow()}>
-                          {element.name}
-                        </td>
-                        <td onClick={() => this.handleNoteShow()}>
-                          {element.phone}
-                        </td>
-                        <td>
-                          {element.status === 0 ? (
-                            <div className="userStatus">
-                              <div
-                                className="StatDot"
-                                style={{ backgroundColor: "red" }}
-                              ></div>
-                              Blocked
-                            </div>
-                          ) : (
-                            <div className="userStatus">
-                              <div
-                                className="StatDot"
-                                style={{ backgroundColor: "#5ac25a" }}
-                              ></div>
-                              Active
-                            </div>
-                          )}
-                        </td>
-                        <td onClick={() => this.handleNoteShow()}>
-                          {mycreateDate.toLocaleString()}
-                        </td>
-                        <td onClick={() => this.handleNoteShow()}>
-                          {myupdateDate.toLocaleString() !== "Invalid Date"
-                            ? myupdateDate.toLocaleString()
-                            : ""}
-                        </td>
-                        <td onClick={() => this.handleNoteShow()}>
-                          {element.requestCounter}
-                        </td>
-                        <td className="sendButton">
-                          <input
-                            onClick={() =>
-                              this.handleShow(element.name, element.id)
-                            }
-                            data-toggle="modal"
-                            data-target="#exampleModal"
-                            className="inTableButton"
-                            type="submit"
-                            value="Send"
-                          />
-                        </td>
-                      </tr>
-                    );
+
+                  return (
+                    <tr key={element.id}>
+                      <td onClick={() => this.handleNoteShow()}>
+                        {element.id}
+                      </td>
+                      <td id="NameHead" onClick={() => this.handleNoteShow()}>
+                        {element.name}
+                      </td>
+                      <td onClick={() => this.handleNoteShow()}>
+                        {element.phone}
+                      </td>
+                      <td>
+                        {element.status === 0 ? (
+                          <div className="userStatus">
+                            <div
+                              className="StatDot"
+                              style={{ backgroundColor: "red" }}
+                            ></div>
+                            Blocked
+                          </div>
+                        ) : (
+                          <div className="userStatus">
+                            <div
+                              className="StatDot"
+                              style={{ backgroundColor: "#5ac25a" }}
+                            ></div>
+                            Active
+                          </div>
+                        )}
+                      </td>
+                      <td onClick={() => this.handleNoteShow()}>
+                        {mycreateDate.toLocaleString()}
+                      </td>
+                      <td onClick={() => this.handleNoteShow()}>
+                        {myupdateDate.toLocaleString() !== "Invalid Date"
+                          ? myupdateDate.toLocaleString()
+                          : ""}
+                      </td>
+                      <td onClick={() => this.handleNoteShow()}>
+                        {element.requestCounter}
+                      </td>
+                      <td className="sendButton">
+                        <input
+                          onClick={() =>
+                            this.handleShow(
+                              element.name,
+                              element.id,
+                              element.fcm_token
+                            )
+                          }
+                          data-toggle="modal"
+                          data-target="#exampleModal"
+                          className="inTableButton"
+                          type="submit"
+                          value="Send"
+                        />
+                      </td>
+                    </tr>
+                  );
                 })}
               </tbody>
             </table>
