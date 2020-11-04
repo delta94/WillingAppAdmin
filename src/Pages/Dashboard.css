@@ -44,7 +44,7 @@ body {
 }
 
 .icons-container {
-  /* margin: 1rem; */
+  padding-left: 1rem;
   border-bottom: 1px solid rgb(232, 232, 238);
   /* padding: 1rem; */
 
@@ -88,4 +88,5 @@ body {
   display: flex;
   justify-content: start;
   align-items: baseline;
+  margin-left: 1rem;
 }

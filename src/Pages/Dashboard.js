@@ -13,6 +13,7 @@ import Users from '../users.json';
 import data from '../Data.json';
 
 import SplineChart from '../components/dashboard/graph/SplineChart';
+import SplineChartFC from '../components/dashboard/graph/SplineChartFC';
 
 // TODO transfer to utils !!
 const formatToday = () => {
@@ -35,15 +36,29 @@ const initialState = {
   // },
   Users: Users,
   topUsers: [],
-  data: data,
+  // data: {},
   registersData: {},
   icons: {},
-  series: [
-    {
-      xKey: 'quarter',
-      yKey: 'spending',
+  options: {
+    animationEnabled: true,
+    axisX: {
+      valueFormatString: 'MMM',
     },
-  ],
+    axisY: {
+      title: 'Active Users (per month)',
+      // prefix: '$',
+      includeZero: false,
+    },
+    data: [
+      {
+        //   yValueFormatString: '$#,###',
+        yValueFormatString: '#,###',
+        xValueFormatString: 'MMMM',
+        type: 'spline',
+        dataPoints: [],
+      },
+    ],
+  },
 };
 
 function reducer(state, action) {
@@ -60,6 +75,11 @@ function reducer(state, action) {
       return { ...state, registersData: action.payload };
     case 'SET_ICONS':
       return { ...state, icons: action.payload };
+    case 'SET_GRAPH_DATA':
+      return {
+        ...state,
+        options: { ...state.options, datapoints: action.payload },
+      };
     // case 'SET_ALL_DATES':
     //   return { ...state, endDate: action.payload };
     default:
@@ -90,34 +110,34 @@ const Dashboard = () => {
     dispatch({ type: 'SET_END_DATE', payload: formatDate(picker.endDate._d) });
   };
 
-  const fetchIcons = async () => {
-    try {
-      const config = {
-        headers: {
-          'content-type': 'application/json',
-          'X-Requested-With': 'XMLhttpRequest',
-        },
-      };
-
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL_SUMMARY}`,
-        config
-      );
-
-      dispatch({ type: 'SET_ICONS', payload: data });
-
-      console.log(data);
-    } catch (err) {
-      console.log(`😱 Axios fetch Icons failed: ${err}`);
-    }
-  };
-
   useEffect(() => {
     let y = Users;
     let x = Users.sort((a, b) => (b.numOfRequests > a.numOfRequests ? 1 : -1));
     let a = x.filter((element, index) => index < 5);
 
     dispatch({ type: 'SET_TOP_USERS', payload: a });
+
+    const fetchIcons = async () => {
+      try {
+        const config = {
+          headers: {
+            'content-type': 'application/json',
+            'X-Requested-With': 'XMLhttpRequest',
+          },
+        };
+
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL_SUMMARY}`,
+          config
+        );
+
+        dispatch({ type: 'SET_ICONS', payload: data });
+
+        console.log(data);
+      } catch (err) {
+        console.log(`😱 Axios fetch Icons failed: ${err}`);
+      }
+    };
 
     fetchIcons();
   }, [state.registersData]);
@@ -148,8 +168,25 @@ const Dashboard = () => {
     fetchRigisterData();
   }, [state.date]);
 
+  // TOFIX!!
+  // useEffect(() => {
+  //   const fetchGraphData = () => {
+  //     const dataPoints = [
+  //       { x: new Date(2020, 6), y: 222 },
+  //       { x: new Date(2020, 7), y: 383 },
+  //       { x: new Date(2020, 8), y: 848 },
+  //       { x: new Date(2020, 9), y: 420 },
+  //     ];
+
+  //     dispatch({ type: 'SET_GRAPH_DATA', payload: dataPoints });
+  //     // console.log(char);
+  //   };
+
+  //   fetchGraphData();
+  // }, [state.date]);
+
   return (
-    <React.Fragment className="dashboard-container">
+    <React.Fragment>
       <Navbar className="navbar-container" />
 
       <div className="date-picker-container">
