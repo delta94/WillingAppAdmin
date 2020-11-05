@@ -12,20 +12,20 @@ export default class Accounts extends Component {
   constructor(props) {
     super(props);
 
-   this.state = {
+    this.state = {
       users: [],
       loaded: false,
       userStatus: "",
       status: false,
       note: false,
-      sort: {
+      sortCol: {
         thName: "",
-        sortDirection: "",
+        sortDirection: "descending",
       },
       chosenUserName: "",
       chosenUserId: 0,
       btnDisable: false,
-      color: ""
+      color: "",
     };
   }
 
@@ -34,26 +34,29 @@ export default class Accounts extends Component {
       "http://ec2-3-87-113-188.compute-1.amazonaws.com:8080/X98ActivitieS?token=d6be46ed-5cdc-403b-9ed1-0af8c5329864"
     )
       .then((res) => {
-        console.log(res.data);
-        this.setState({ users: res.data, loaded: true });
+        let descendData = [];
+        // console.log(res.data);
+        for ( let i = 0; i < res.data.length; i++) {
+          descendData = [res.data[i], ...descendData];
+        }
+        this.setState({ users: descendData, loaded: true });
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  
 
   updateColToSort = (header) => {
     if (
-      this.state.sort.thName === header &&
-      this.state.sort.sortDirection === "ascending"
+      this.state.sortCol.thName === header &&
+      this.state.sortCol.sortDirection === "ascending"
     ) {
       this.setState({
-        sort: { thName: header, sortDirection: "descending" },
+        sortCol: { thName: header, sortDirection: "descending" },
       });
     } else
       this.setState({
-        sort: { thName: header, sortDirection: "ascending" },
+        sortCol: { thName: header, sortDirection: "ascending" },
       });
 
     switch (header) {
@@ -68,42 +71,45 @@ export default class Accounts extends Component {
         this.SortTbByThName();
         break;
       default:
-        console.log("wow");
+        
     }
   };
 
   SortTbByColTh = (header) => {
     let SortedList = this.state.users.sort((a, b) => {
       if (a[header] < b[header])
-        return this.state.sort.sortDirection === "ascending" ? -1 : 1;
+        return this.state.sortCol.sortDirection === "ascending" ? -1 : 1;
       if (a[header] > b[header])
-        return this.state.sort.sortDirection === "ascending" ? 1 : -1;
+        return this.state.sortCol.sortDirection === "ascending" ? 1 : -1;
       return 0;
     });
     this.setState({ users: SortedList });
   };
 
   SortTbByThName = () => {
-    this.checkIfUpperCase();
+    let tempNullList = [];
+    let tempNameList = [];
 
-    let SortedList = this.state.users.sort((a, b) => {
-      if (a.name < b.name ) 
-        return this.state.sort.sortDirection === "ascending" ? -1 : 1;
-      if (a.name > b.name)
-        return this.state.sort.sortDirection === "ascending" ? 1 : -1;
-      return 0;
-      // }
+    this.state.users.map((user) => {
+      if (user.name === null) {
+        return (tempNullList = [...tempNullList, user]);
+      } else {
+        return (tempNameList = [...tempNameList, user]);
+      }
     });
+
+    tempNameList.sort((a, b) => {
+      if (a.name.toLowerCase() < b.name.toLowerCase())
+        return this.state.sortCol.sortDirection === "ascending" ? 1 : -1;
+      else if (a.name.toLowerCase() > b.name.toLowerCase())
+        return this.state.sortCol.sortDirection === "ascending" ? -1 : 1;
+      else return 0;
+    });
+
+    let SortedList = [...tempNameList, ...tempNullList];
     this.setState({ users: SortedList });
   };
 
-  checkIfUpperCase = () => {
-    this.state.users.filter(user => {
-      if (user.name !== null) {
-        return user.name.toLowerCase();
-      }
-    });
-  };
 
   //show and hide the modal
   ChangeNotifStatus = () => {
@@ -119,17 +125,23 @@ export default class Accounts extends Component {
   handleClose = () => this.setState({ status: false });
   handleShow = (name, id, fcm) => {
     //console.log( name, id, fcm);
-    if ( fcm !== null ) {
-      this.setState({ status: true, chosenUserName: name, chosenUserId: id, btnDisable: false, color: ''});
-    }
-    else 
-      this.setState({ status: true, chosenUserName: name, chosenUserId: id, btnDisable: true, color: 'gray'});
-  }
-  
-
-    
-
-
+    if (fcm !== null) {
+      this.setState({
+        status: true,
+        chosenUserName: name,
+        chosenUserId: id,
+        btnDisable: false,
+        color: "",
+      });
+    } else
+      this.setState({
+        status: true,
+        chosenUserName: name,
+        chosenUserId: id,
+        btnDisable: true,
+        color: "gray",
+      });
+  };
 
   render() {
     document.body.style = "background: #f55f5;";
@@ -157,11 +169,12 @@ export default class Accounts extends Component {
             >
               Close
             </button>
-            <button 
-              className="modalBTN" 
-              onClick={() => this.handleClose()} 
-              style={{ backgroundColor: this.state.color}} 
-              disabled={this.state.btnDisable}>
+            <button
+              className="modalBTN"
+              onClick={() => this.handleClose()}
+              style={{ backgroundColor: this.state.color }}
+              disabled={this.state.btnDisable}
+            >
               Send
             </button>
           </Modal.Footer>
@@ -272,7 +285,7 @@ export default class Accounts extends Component {
               </thead>
 
               <tbody>
-                {this.state.users.map((element, i) => {
+                {this.state.users.map((element) => {
                   var mycreateDate = new Date(parseInt(element.createDate));
                   var myupdateDate = new Date(parseInt(element.updateDate));
 
