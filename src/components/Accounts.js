@@ -149,7 +149,7 @@ export default class Accounts extends Component {
       <div>
         <Navbar />
 
-        {/* Modal Section - user notification */}
+        {/* Modal Section - User notification */}
         <Modal show={this.state.status} onHide={() => this.handleClose()}>
           <Modal.Header closeButton>
             <Modal.Title>
@@ -180,7 +180,7 @@ export default class Accounts extends Component {
           </Modal.Footer>
         </Modal>
 
-        {/* Modal Section - report  */}
+        {/* Modal Section - Report  */}
         <Modal show={this.state.note} onHide={() => this.handleNoteClose()}>
           <Modal.Header closeButton>
             <Modal.Title>Report Details:</Modal.Title>
