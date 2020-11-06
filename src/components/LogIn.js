@@ -1,61 +1,104 @@
-import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+import React, { useState,useEffect } from 'react'
 import "../Dashboard.css";
-export default class LogIn extends Component {
-    constructor(props) {
-        super(props);
+import '../Login.css'
+import Navbar from '../components/Navbar';
+import axios from 'axios';
+import { Redirect} from 'react-router-dom';
+import {Alert} from 'react-bootstrap'
+import {useDispatch,useSelector} from 'react-redux'
+import {userLogin} from '../actions/userActions'
 
-    this.state={
-        UserName:'',
-        password:'',
-       
-    }
-    }
-    validUser=(element)=>{
-        this.setState({UserName:element.target.value});
-    }
+
+
+
+const LogIn = ({history}) => {
+
+    const dispatch = useDispatch()
+    const userAuth = useSelector(state => state.userAuth)
+
+    const {isAuth,message,user} = userAuth
+
+    const [email,setEamil] = useState('Shachar87@gmail.com')
+    const [password,setPassword] = useState('Aa123456')
+
+    
+
    
-    validPass=(element1)=>{
-        this.setState({password:element1.target.value})
-    }
 
-   savedName=()=>{
-    //    this.props.add (this.state.UserName);
-       console.log (this.state.UserName)
-   }
+const savedName = (e) =>{
+    e.preventDefault()
 
-
-
-    render() {
-        return (
-            <div>
-                
-                  <form style={{ backgroundColor:"#4d34c1"}}>
-              
-                 <div className="col-1">
-               <img className="logo" src="./willing_logo.png" />
-               </div>  
-         
-               <br/>  
-               <h6 style={{color:"white"}}>Email:</h6>
-               <input type ='text' onChange={this.validUser}   placeholder="Email"></input>
-               <br/>
-               <h6 style={{color:"white"}}>Password:</h6>
-               <input type ='password' onChange={this.validPass}  placeholder='password'></input>
-               <br/>
-              
-               <Link  path to="/dashboard">
-                <button   style={{textAlign:"center" ,border:"2px solid white " ,borderRadius: "50%"}} onClick={this.savedName}>submit</button>
-              </Link>
-
-               {/* <Link to ='/dashboard'>
-            
-               <button onClick={this.validRegister}style={{backgroundColor:"lightblue",border:"2px solid blue " ,borderRadius: "50%"}}><b>submit</b></button>
-               </Link> */}
-               </form>
-               </div>
-               
-           
-        )
-    }
+    let request ={
+                   email,
+                   password
+               }
+    dispatch(userLogin(request))
+    setEamil('')
+    setPassword('')
 }
+
+
+if (user) {
+    
+    return <Redirect to='/dashboard'/>
+}
+
+    return (
+        <>
+            
+        
+                        {/* {this.state.message && <Alert variant='danger'>{this.state.message}</Alert>} */}
+                        <div className='background-login'>
+                    <div className='login-box'>
+                            
+                              <form onSubmit={(e) => savedName(e)} >
+                          
+                             {/* <div className="col-1">
+            //                <img className="logo" src="./willing_logo.png" />
+            //                </div>   */}
+                     
+                       <br/>  
+                           <h6 style={{color:"black",textAlign:'left'}}>Email</h6>
+                          <br/>
+                            <div className='inputContainer'>
+                           <i className="fa fa-user"></i>
+                          <input className='field' required type ='email' onChange={(e) =>setEamil(e.target.value)} value={email}   placeholder="Email"></input>
+                           </div>
+                           
+                          
+                           <h6 style={{color:"black",textAlign:'left',marginTop:'30px'}}>Password</h6>
+                           <br/>
+                           <div className='inputContainer'>
+                           <i className="fa fa-unlock-alt"></i>
+                           <input className='field' required type ='password' onChange={(e) =>setPassword(e.target.value)} value={password}  placeholder='Password'></input>
+                           </div>
+                           
+                           <div className='rowContainer'>
+                            
+                           <input className='childCon'  id='autoLogin' type='checkbox' style={{textAlign:'left'}}></input>
+                           <h3 style={{fontSize:'10px',marginLeft:'5px',whiteSpace:'nowrap'}}>Remember Me</h3>
+            
+                          <h3 className='childCon' id='forgotPass' style={{fontSize: '10px',textAlign:'right',cursor:'pointer',fontWeight:'bold',
+                           color:'blue'}}>Forgot Password?</h3>
+                           
+                           
+                            </div>
+                           
+                           {/* <Link  path to="/dashboard"> */}
+                            <button className='btnSubmit' type='submit'>LOGIN</button>
+                           {/* </Link> */}
+            
+                           {/* <Link to ='/dashboard'>
+                        
+                            <button onClick={this.validRegister}style={{backgroundColor:"lightblue",border:"2px solid blue " ,borderRadius: "50%"}}><b>submit</b></button>
+                          </Link> */}
+                         </form>
+                          </div>
+                          </div>
+                       </>
+    )
+}
+
+export default LogIn
+
+

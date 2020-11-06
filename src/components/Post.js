@@ -48,7 +48,7 @@ export default class Post extends Component {
     document.body.style = "background: #f5f5f5;";
     return (
       <div>
-           <Navbar />
+           
         <form id="categoryForm" className="container">
           <h3 style={{ paddingTop: 30 }}>Choose Category</h3>
           <br />

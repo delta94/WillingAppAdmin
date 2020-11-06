@@ -123,7 +123,7 @@ export default class Accounts extends Component {
     document.body.style = "background: #f55f5;";
     return (
       <div>
-        <Navbar />
+       
 
         {/* Modal Section - notification */}
         <Modal show={this.state.status} onHide={() => this.handleClose()}>

@@ -63,7 +63,7 @@ export default class Reports extends Component {
     return (
       <div >
       
-        <Navbar />
+       
         
         
         <div style={{ marginTop: 30, zIndex:50 }} className="container">

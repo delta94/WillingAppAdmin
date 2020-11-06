@@ -1,10 +1,27 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Link,NavLink } from "react-router-dom";
 
-export default class Navbar extends Component {
-  render() {
-    return (
-      <div>
+
+
+
+
+
+const Navbar = () => {
+  
+  
+
+  const userAuth = useSelector(state => state.userAuth)
+
+    console.log(userAuth.user);
+ 
+     const {user,name} = userAuth
+
+  
+  
+
+  return (
+    <div>
         <nav className="navbarStyle">
           <div style={{ marginRight: 0 }} className="row">
             <div className="col-1">
@@ -21,30 +38,34 @@ export default class Navbar extends Component {
           </div>
           <div style={{ marginRight: 0 }} id="buttons" className="row">
             <div className="col-1"></div>
+{ user  && (
+              <>
             <div className="col-sm">
-              <Link className="linkstyle" path to="/dashboard">
-                <button className="buttonStyle">Dashboard</button>
-              </Link>
+              <NavLink  className="main-nav" activeClassName='main-nav-active'  to="/dashboard">
+                Dashboard
+              </NavLink>
             </div>
             <div className="col-sm">
-              <Link className="linkstyle" path to="/accounts">
-                <button className="buttonStyle">Accounts</button>
-              </Link>
+              <NavLink className="main-nav" activeClassName='main-nav-active'  to="/accounts">
+                Accounts
+              </NavLink>
             </div>
             <div className="col-sm">
-              <Link className="linkstyle" path to="/reports">
-                <button className="buttonStyle">Reports</button>
-              </Link>
+              <NavLink className="main-nav" activeClassName='main-nav-active'  to="/reports">
+               Reports
+              </NavLink>
             </div>
-            <div className="col-sm">
-              <Link className="linkstyle" path to="/new post">
-                <button className="buttonStyle">New post</button>
-              </Link>
-            </div>
+            </>
+            
+            )
+            }
             <div className="col-8"></div>
           </div>
         </nav>
       </div>
-    );
-  }
+  )
 }
+
+export default Navbar
+
+
