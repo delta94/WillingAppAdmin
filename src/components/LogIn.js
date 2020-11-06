@@ -85,12 +85,7 @@ if (user) {
                             </div>
                            
                             <button className='btnSubmit' type='submit'>LOGIN</button>
-                           {/* </Link> */}
-            
-                           {/* <Link to ='/dashboard'>
-                        
-                            <button onClick={this.validRegister}style={{backgroundColor:"lightblue",border:"2px solid blue " ,borderRadius: "50%"}}><b>submit</b></button>
-                          </Link> */}
+                           
                          </form>
                           </div>
                           </div>
