@@ -14,13 +14,13 @@ import {
 const data = [
   {
     month: 'אוקטובר 2020',
-    // requests: 4000,
+
     acounts: 2400,
     amt: 2400,
   },
   {
     month: 'ספטמבר 2020',
-    requests: 3000,
+
     acounts: 1398,
     amt: 2210,
   },
@@ -62,8 +62,8 @@ export default class Example extends PureComponent {
   render() {
     return (
       <LineChart
-        width={800}
-        height={300}
+        width={1200}
+        height={360}
         data={data}
         margin={{
           top: 5,

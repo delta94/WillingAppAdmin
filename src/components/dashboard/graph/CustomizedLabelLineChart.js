@@ -94,8 +94,8 @@ export default class Example extends PureComponent {
   render() {
     return (
       <LineChart
-        width={880}
-        height={320}
+        width={1200}
+        height={360}
         data={data}
         margin={{
           top: 20,

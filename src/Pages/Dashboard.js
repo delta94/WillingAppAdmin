@@ -14,6 +14,7 @@ import data from '../Data.json';
 
 import SplineChart from '../components/dashboard/graph/SplineChart';
 import SplineChartFC from '../components/dashboard/graph/SplineChartFC';
+import { useGraph } from '../components/dashboard/graph/graph-hook';
 
 // TODO transfer to utils !!
 const formatToday = () => {
@@ -101,6 +102,10 @@ const formatDateInMs = (date) => {
 const Dashboard = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const { setDatapoints, SplineChartF } = useGraph();
+
+  // var chart = useRef();
+
   const handleEvent = (event, picker) => {
     dispatch({ type: 'SET_DATE_RANGE', payload: event.currentTarget.value });
     dispatch({
@@ -168,22 +173,12 @@ const Dashboard = () => {
     fetchRigisterData();
   }, [state.date]);
 
-  // TOFIX!!
-  // useEffect(() => {
-  //   const fetchGraphData = () => {
-  //     const dataPoints = [
-  //       { x: new Date(2020, 6), y: 222 },
-  //       { x: new Date(2020, 7), y: 383 },
-  //       { x: new Date(2020, 8), y: 848 },
-  //       { x: new Date(2020, 9), y: 420 },
-  //     ];
-
-  //     dispatch({ type: 'SET_GRAPH_DATA', payload: dataPoints });
-  //     // console.log(char);
-  //   };
-
-  //   fetchGraphData();
-  // }, [state.date]);
+  useEffect(() => {
+    // var myChart = chart.current;
+    // dispatch({ type: 'SET_GRAPH_DATA', payload: fetchedDataPoints });
+    // setDatapoints(state.date.dateRange);
+    // myChart.render();
+  }, [state.date.dateRange]);
 
   return (
     <React.Fragment>
@@ -209,21 +204,26 @@ const Dashboard = () => {
             title={state.icons.totalAccounts}
           ></Card>
           <Card
-            subtitle="Active Users"
+            subtitle="Total Active Users"
             title={state.icons.totalActiveUsers}
           ></Card>
           <Card
-            subtitle=" Orders Last Month"
-            title={state.icons.totalActiveRequesterLastMonth}
+            subtitle="Total Active Requests"
+            title={state.icons.totalActiveRequests}
           ></Card>
           <Card
-            subtitle="Active Orders"
-            title={state.icons.totalActiveRequests}
+            subtitle="Active requests last month"
+            title={state.icons.totalActiveRequesterLastMonth}
           ></Card>
         </div>
 
         <div className="graph-container">
-          <SplineChart />
+          {/* <SplineChartFC
+            responsive
+            options={state.options}
+            key={state.options.data[0].dataPoints.toString()}
+          /> */}
+          <SplineChartF />
         </div>
       </article>
 
@@ -232,42 +232,42 @@ const Dashboard = () => {
         <div className="card-container_dashboard">
           <Card
             src="./emergency.svg"
-            subtitle="category name"
+            subtitle="Emergency"
             title={state.registersData.addRequestCount}
           ></Card>
           <Card
             src="./Ride_Delivery.svg"
-            subtitle="category name"
+            subtitle="Medical"
             title={state.registersData.addRequestCount}
           ></Card>
           <Card
             src="./Road assist.svg"
-            subtitle="category name"
+            subtitle="Ride Deliver"
             title={state.registersData.addRequestCount}
           ></Card>
           <Card
             src="./item needed.svg"
-            subtitle="category name"
+            subtitle="Item Needed"
             title={state.registersData.addRequestCount}
           ></Card>
           <Card
             src="./Give away.svg"
-            subtitle="category name"
+            subtitle="Give Away Item"
             title={state.registersData.addRequestCount}
           ></Card>
           <Card
             src="./Lost and found.svg"
-            subtitle="category name"
+            subtitle="Lost And Found"
             title={state.registersData.addRequestCount}
           ></Card>
           <Card
             src="./Social.svg"
-            subtitle="category name"
+            subtitle="Social"
             title={state.registersData.addRequestCount}
           ></Card>
           <Card
             src="./General.svg"
-            subtitle="category name"
+            subtitle="General"
             title={state.registersData.addRequestCount}
           ></Card>
         </div>
