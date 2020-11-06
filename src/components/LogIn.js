@@ -84,7 +84,6 @@ if (user) {
                            
                             </div>
                            
-                           {/* <Link  path to="/dashboard"> */}
                             <button className='btnSubmit' type='submit'>LOGIN</button>
                            {/* </Link> */}
             
