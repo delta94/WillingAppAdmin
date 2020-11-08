@@ -126,9 +126,7 @@ export default class SingleReport extends Component {
 
     let color = "#5ac25a";
 
-    // if (this.props.closeOptions) {
-    //   this.setState({ flag: false });
-    // }
+    
     if (this.state.element.status === "closed") {
       color = "red";
       

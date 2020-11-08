@@ -153,7 +153,7 @@ const Dashboard = () => {
 
   return (
     <React.Fragment>
-      <Navbar /> <br />
+     
       <DateRangePicker
         onEvent={handleEvent}
         initialSettings={{
