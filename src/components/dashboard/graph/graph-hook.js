@@ -5,15 +5,21 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 const defaultOptions = {
   responsive: true,
   animationEnabled: true,
+  exportEnabled: true,
+  theme: 'light2', // "light1", "dark1", "dark2"
   //   title: {
   //     text: 'Monthly Sales - 2017',
   //   },
   axisX: {
     valueFormatString: 'MMM',
+    title: 'Month',
+    // prefix: 'W',
+    interval: 2,
   },
   axisY: {
     title: 'Active Users (per month)',
     // prefix: '$',
+    // suffix: '%',
     includeZero: false,
   },
   // We suggest not to set width/height property unless it is really required.
