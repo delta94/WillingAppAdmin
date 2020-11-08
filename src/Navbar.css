@@ -27,50 +27,13 @@ svg {
   text-decoration: none;
 }
 
-.main-nav{
+.linkstyle {
   color: white;
-  display: inline-block;
-  
-  
-}
-.main-nav::after{
-content: '';
-display: block;
-width: 0;
-height: 1px;
-background: #fff;
-transition: width .3s;
 
-}
-.main-nav:hover::after{
-  width: 100%;
-  transition: width .3s;
-  
-}
-.main-nav:hover{
-  color: white !important;
-  padding-bottom: 3px;
-  
-  text-decoration: none;
-}
-.main-nav-active{
-  color: white;
-  border-bottom: 1px solid white;
-  padding-bottom: 3px;
-  
-}
-.main-nav-active:hover::after{
-width: 0px;
-}
-.main-nav-active:hover{
-  text-decoration: none;
-  
-  
 }
 
 #buttons {
   margin-top: -5px;
-  margin-left: 20px;
 }
 
 button.buttonStyle {
@@ -113,7 +76,6 @@ button.buttonStyle:active {
   color: #fff;
   -webkit-transition: none;
   transition: none;
-  border-bottom: 1px solid white;
 }
 
 #searchbar {

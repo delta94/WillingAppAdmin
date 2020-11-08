@@ -16,7 +16,7 @@ const LogIn = ({history}) => {
     const dispatch = useDispatch()
     const userAuth = useSelector(state => state.userAuth)
 
-    const {isAuth,message,user} = userAuth
+    const {isAuth,message,user,error} = userAuth
 
     const [email,setEamil] = useState('Shachar87@gmail.com')
     const [password,setPassword] = useState('Aa123456')
@@ -45,7 +45,7 @@ if (user) {
 
     return (
         <>
-            
+            {error && <Alert variant='danger'>{error}</Alert>}
         
                         {/* {this.state.message && <Alert variant='danger'>{this.state.message}</Alert>} */}
                         <div className='background-login'>
@@ -84,14 +84,8 @@ if (user) {
                            
                             </div>
                            
-                           {/* <Link  path to="/dashboard"> */}
                             <button className='btnSubmit' type='submit'>LOGIN</button>
-                           {/* </Link> */}
-            
-                           {/* <Link to ='/dashboard'>
-                        
-                            <button onClick={this.validRegister}style={{backgroundColor:"lightblue",border:"2px solid blue " ,borderRadius: "50%"}}><b>submit</b></button>
-                          </Link> */}
+                           
                          </form>
                           </div>
                           </div>
