@@ -5,8 +5,6 @@ import './Dashboard.css';
 
 import Card from '../components/shared/UIElements/Card';
 
-import Navbar from '../components/Navbar';
-
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 
 import Users from '../users.json';
@@ -182,8 +180,6 @@ const Dashboard = () => {
 
   return (
     <React.Fragment>
-      <Navbar className="navbar-container" />
-
       <div className="date-picker-container">
         <DateRangePicker
           onEvent={handleEvent}

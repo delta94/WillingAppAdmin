@@ -1,38 +1,24 @@
-
-import React, { useEffect } from "react";
-import Accounts from "./components/Accounts.js";
-import Dashboard from "./components/Dashboard.js";
-import Reports from "./components/Reports.js";
-import LogIn from "./components/LogIn";
-import {useSelector} from 'react-redux'
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-daterangepicker/daterangepicker.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Navbar from './components/Navbar'
-import Post from "./components/Post.js";
-
-
-
-
+import React, { useEffect } from 'react';
+import Accounts from './components/Accounts.js';
+import Dashboard from './Pages/Dashboard';
+import Reports from './components/Reports.js';
+import LogIn from './components/LogIn';
+import { useSelector } from 'react-redux';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-daterangepicker/daterangepicker.css';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Post from './components/Post.js';
 
 const App = () => {
-
-  
-
-  
-
- 
-
   return (
     <div className="App">
-      
       <Router>
-      <Navbar  />
+        <Navbar />
         <Switch>
-         
           <Route exact path="/">
-            <LogIn  />
+            <LogIn />
           </Route>
           <Route exact path="/dashboard">
             <Dashboard />
@@ -45,14 +31,12 @@ const App = () => {
             <Reports />
           </Route>
           <Route exact path="/new post">
-              <Post/>
-            </Route>
+            <Post />
+          </Route>
         </Switch>
       </Router>
     </div>
-  )
-}
+  );
+};
 
-export default App
-
-
+export default App;
