@@ -1,13 +1,96 @@
-.graph-container_dashboard {
-  margin: auto;
+/* darker shade of gray - TOFIX!!*/
+body {
+  margin: 0;
+  background: #4d4d4d;
 }
 
-.category-list {
-  /* list-style: none; */
-  margin: 1rem auto;
-  padding: 0;
-  width: 90%;
-  max-width: 40rem;
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.navber-container {
+  /* 
+  display: flex;
+  align-items: center; */
+}
+
+/* date-picker styles */
+.dateTimeInput {
+  border-radius: 20px;
+  text-align: center;
+  border-color: transparent;
+  background-color: #4d34c1;
+  color: white;
+  width: 200px;
+}
+
+.date-picker-container {
+  margin: 1rem 1rem 0rem 1rem;
+  padding-right: 1.2rem;
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+}
+
+.icons-plus-graph-container {
+  margin: 1rem 2rem 1rem 2rem;
+  border: 1px solid rgb(232, 232, 238);
+  /* padding: 1rem; */
+  /* height: 40vh; */
+}
+
+.icons-plus-graph-container:hover {
+  border: 1px solid blue;
+}
+
+.icons-container {
+  padding-left: 1rem;
+  border-bottom: 1px solid rgb(232, 232, 238);
+  /* padding: 1rem; */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  /* align-content: center; */
+}
+
+.icons-container:hover {
+  border-bottom: 1px solid blue;
+}
+
+.graph-container {
+  padding: 1rem;
+  /* position: relative; */
+  /* height: 30vh; */
+  /* width: 80vw; */
+}
+
+.graph-container:hover {
+  border-top: 1px solid blue;
+}
+
+.categories-container {
+  border: 1px solid rgb(232, 232, 238);
+  margin: 0rem 2rem 2rem 2rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.categories-container:hover {
+  border: 1px solid blue;
+}
+
+.start-row {
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem;
+}
+
+.card-container_dashboard {
+  display: flex;
+  justify-content: start;
+  align-items: baseline;
+  margin-left: 1rem;
 }
